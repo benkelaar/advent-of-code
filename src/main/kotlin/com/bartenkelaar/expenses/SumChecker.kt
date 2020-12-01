@@ -15,11 +15,11 @@ class SumChecker {
             return if (sum == target) (low to high)
             else findPairRecursive(
                 lowIndex = if (sum < target) lowIndex + 1 else lowIndex,
-                highIndex = if (sum > target ) highIndex - 1 else highIndex,
+                highIndex = if (sum > target) highIndex - 1 else highIndex
             )
         }
 
-        return findPairRecursive(0, entries.size - 1);
+        return findPairRecursive(0, sorted.lastIndex);
     }
 
 
