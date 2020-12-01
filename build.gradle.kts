@@ -11,4 +11,18 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    testImplementation(kotlin("test-junit5"))
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+
+    jar {
+        manifest {
+            attributes("Main-Class" to "com.bartenkelaar.expenses.AddUpResolverKt")
+        }
+    }
 }
