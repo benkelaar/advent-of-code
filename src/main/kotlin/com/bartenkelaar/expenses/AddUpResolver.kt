@@ -11,8 +11,8 @@ class AddUpResolver(private val sumChecker: SumChecker) {
 }
 
 fun main() {
-    val expenses = File("/Users/benkelaar/Workspaces/personal/advent-of-code/src/main/resources/input/day1.txt")
-        .useLines { it.map { line -> line.trim().toInt() }.toSet() }
+    val expenses = AddUpResolver::class.java.getResource("/input/day1.txt")
+        .readText().lines().map { line -> line.trim().toInt() }.toSet()
 
     val resolver = AddUpResolver(SumChecker())
     print(resolver.resolve(expenses))
