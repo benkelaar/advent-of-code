@@ -8,6 +8,6 @@ class AddUpResolverTest {
 
     @Test
     fun `given list, find added up product`() {
-        assertEquals(resolver.resolve(listOf(1000, 1010, 1020)), 1020000)
+        assertEquals(resolver.resolve(setOf(1000, 1010, 1020)), 1020000)
     }
 }

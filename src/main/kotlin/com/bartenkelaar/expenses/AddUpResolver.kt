@@ -3,17 +3,17 @@ package com.bartenkelaar.expenses
 import java.io.File
 
 class AddUpResolver(private val sumChecker: SumChecker) {
-    fun resolve(expenses: List<Int>): Int {
-        val (expense1, expense2) = checkNotNull(sumChecker.findPairSum(expenses)) { "Couldn't add up expenses tot 2020" }
-        return expense1 * expense2
+    fun resolve(expenses: Set<Int>): Pair<Int, Int> {
+        val (pair1, pair2) = checkNotNull(sumChecker.findPairSum(expenses)) { "Couldn't add up expenses tot 2020" }
+        val (triple1, triple2, triple3) = sumChecker.findTripleSum(expenses)
+        return pair1 * pair2 to triple1 * triple2 * triple3
     }
 }
 
 fun main() {
     val expenses = File("/Users/benkelaar/Workspaces/personal/advent-of-code/src/main/resources/input/day1.txt")
-        .useLines { it.map { line -> line.trim().toInt() }.toList() }
+        .useLines { it.map { line -> line.trim().toInt() }.toSet() }
 
     val resolver = AddUpResolver(SumChecker())
-
     print(resolver.resolve(expenses))
 }
