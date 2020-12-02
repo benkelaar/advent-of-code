@@ -2,8 +2,13 @@ package com.bartenkelaar.passwords
 
 import com.bartenkelaar.Solver
 
-class PasswordChecker : Solver<Int> {
-    override fun solve(input: List<String>) = input.mapNotNull(::parseLine).filter(PasswordLine::isValid).count()
+class PasswordChecker : Solver {
+    override fun solve(input: List<String>): Pair<Int, Int> {
+        val lines = input.mapNotNull(::parseLine)
+        val validSledRentalPasswords = lines.count { it.isValidSledRental() }
+        val validTobogganPasswords = lines.count { it.isValidToboggan() }
+        return validSledRentalPasswords to validTobogganPasswords
+    }
 }
 
 val LINE_REGEX = Regex("(\\d+)-(\\d+) ([a-z]): (\\w+)")
@@ -17,10 +22,14 @@ fun parseLine(line: String): PasswordLine? {
 }
 
 data class PasswordLine(
-    val lowBound: Int,
-    val highBound: Int,
+    val lowNumber: Int,
+    val highNumber: Int,
     val char: Char,
     val password: String
 ) {
-    fun isValid() = password.count { it == char } in lowBound .. highBound
+    fun isValidSledRental() = password.count { it == char } in lowNumber .. highNumber
+
+    fun isValidToboggan() = (charAt(lowNumber) == char) xor (charAt(highNumber) == char)
+
+    private fun charAt(charNumber: Int) = password[charNumber - 1]
 }

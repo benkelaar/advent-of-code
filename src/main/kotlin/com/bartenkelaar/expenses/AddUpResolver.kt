@@ -2,7 +2,7 @@ package com.bartenkelaar.expenses
 
 import com.bartenkelaar.Solver
 
-class AddUpResolver(private val sumChecker: SumChecker) : Solver<Pair<Int, Int>> {
+class AddUpResolver(private val sumChecker: SumChecker) : Solver {
     override fun solve(input: List<String>) = resolve(input.map { it.trim().toInt() }.toSet())
 
     fun resolve(expenses: Set<Int>): Pair<Int, Int> {

@@ -7,11 +7,6 @@ import kotlin.test.assertTrue
 
 class PasswordLineTest {
     @Test
-    fun `Skip empty line`() {
-
-    }
-
-    @Test
     fun `When parsing a line split it correctly into information`() {
         val line = "2-4 s: password"
 
@@ -26,23 +21,44 @@ class PasswordLineTest {
     }
 
     @Test
-    fun `When testing a line verify password correctly`() {
+    fun `When testing a line for sled rental verify password correctly`() {
         val line = "2-4 s: password"
 
-        assertTrue(parseLine(line)!!.isValid())
+        assertTrue(parseLine(line)!!.isValidSledRental())
     }
 
     @Test
-    fun `When testing a line that hass too little chars mark as invalid password correctly`() {
+    fun `When testing a line for sled rental that has too little chars mark as invalid password correctly`() {
         val line = "2-4 s: pasword"
 
-        assertFalse(parseLine(line)!!.isValid())
+        assertFalse(parseLine(line)!!.isValidSledRental())
     }
 
     @Test
-    fun `When testing a line that hass too many chars mark as invalid password correctly`() {
+    fun `When testing a line for sled rental that has too many chars mark as invalid password correctly`() {
         val line = "2-4 s: passsssword"
 
-        assertFalse(parseLine(line)!!.isValid())
+        assertFalse(parseLine(line)!!.isValidSledRental())
+    }
+
+    @Test
+    fun `When testing a line for Toboggan verify password correctly with char in high position`() {
+        val line = "2-4 s: password"
+
+        assertTrue(parseLine(line)!!.isValidToboggan())
+    }
+
+    @Test
+    fun `When testing a line for Toboggan verify password correctly with char in low position`() {
+        val line = "2-4 a: password"
+
+        assertTrue(parseLine(line)!!.isValidToboggan())
+    }
+
+    @Test
+    fun `When testing a line for Toboggan false if both equal`() {
+        val line = "3-4 s: password"
+
+        assertFalse(parseLine(line)!!.isValidToboggan())
     }
 }
