@@ -1,21 +1,39 @@
 package com.bartenkelaar
 
-import com.bartenkelaar.expenses.AddUpResolver
-import com.bartenkelaar.expenses.SumChecker
-import com.bartenkelaar.passwords.PasswordChecker
+import com.bartenkelaar.year2015.elevators.BracketMover
+import com.bartenkelaar.year2020.expenses.AddUpResolver
+import com.bartenkelaar.year2020.expenses.SumChecker
+import com.bartenkelaar.year2020.navigation.TreeFinder
+import com.bartenkelaar.year2020.passwords.PasswordChecker
 
 interface Solver {
-    fun solve(input: List<String>): Pair<Int, Int>
+    fun solve(input: List<String>): Pair<Int, Number>
 }
 
-private val solvers = listOf(
+private val solvers2015 = listOf<Solver>(
+    BracketMover()
+)
+
+private val solvers2020 = listOf(
     AddUpResolver(SumChecker()),
-    PasswordChecker()
+    PasswordChecker(),
+    TreeFinder(),
 )
 
 fun main() {
-    solvers.forEachIndexed { i, solver ->
-        val input = solver.javaClass.getResource("/input/day${i + 1}.txt").readText().lines()
-        println("Day $i: ${solver.solve(input)}")
-    }
+    2015.printSolutions(solvers2015)
+    2020.printSolutions(solvers2020)
 }
+
+private fun Int.printSolutions(solvers: List<Solver>) {
+    println("Solutions for year $this\n")
+    solvers.forEachIndexed { i, solver ->
+        val day = i + 1
+        val input = solver.readFile("day$day.txt", this)
+        println("Day $day: ${solver.solve(input)}")
+    }
+    println("=======================\n")
+}
+
+private fun Any.readFile(fileName: String, year: Int) =
+    javaClass.getResource("/input/$year/$fileName").readText().lines().filter { it.isNotBlank() }

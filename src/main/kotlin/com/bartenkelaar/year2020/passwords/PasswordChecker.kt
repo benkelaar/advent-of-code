@@ -1,4 +1,4 @@
-package com.bartenkelaar.passwords
+package com.bartenkelaar.year2020.passwords
 
 import com.bartenkelaar.Solver
 
@@ -11,12 +11,12 @@ class PasswordChecker : Solver {
     }
 }
 
-val LINE_REGEX = Regex("(\\d+)-(\\d+) ([a-z]): (\\w+)")
+val LINE_REGEX = """(\d+)-(\d+) ([a-z]): (\w+)""".toRegex()
 
 fun parseLine(line: String): PasswordLine? {
     val match = LINE_REGEX.matchEntire(line)
     return match?.let {
-        val (_, lowBound, highBound, char, password) = it.groupValues
+        val (lowBound, highBound, char, password) = it.destructured
         PasswordLine(lowBound.toInt(), highBound.toInt(), char[0], password)
     }
 }

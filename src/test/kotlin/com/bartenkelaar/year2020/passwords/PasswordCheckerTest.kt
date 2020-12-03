@@ -1,4 +1,4 @@
-package com.bartenkelaar.passwords
+package com.bartenkelaar.year2020.passwords
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

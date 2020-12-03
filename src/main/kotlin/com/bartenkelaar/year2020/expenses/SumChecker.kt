@@ -1,4 +1,4 @@
-package com.bartenkelaar.expenses
+package com.bartenkelaar.year2020.expenses
 
 class SumChecker {
     fun findPairSum(entries: Set<Int>) = findPairSum(entries, 2020)
@@ -19,7 +19,7 @@ class SumChecker {
             )
         }
 
-        return findPairRecursive(0, sorted.lastIndex);
+        return findPairRecursive(0, sorted.lastIndex)
     }
 
 

@@ -1,4 +1,4 @@
-package com.bartenkelaar.expenses
+package com.bartenkelaar.year2020.expenses
 
 import kotlin.test.assertEquals
 import kotlin.test.Test

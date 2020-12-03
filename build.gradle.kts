@@ -22,7 +22,7 @@ tasks {
 
     jar {
         manifest {
-            attributes("Main-Class" to "com.bartenkelaar.expenses.AddUpResolverKt")
+            attributes("Main-Class" to "com.bartenkelaar.MainKt")
         }
     }
 }
