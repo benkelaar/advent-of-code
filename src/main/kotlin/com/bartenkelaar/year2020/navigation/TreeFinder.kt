@@ -14,7 +14,7 @@ private val SLOPES =
 class TreeFinder : Solver {
     override fun solve(input: List<String>): Pair<Int, Number> {
         return input.countTrees(1 to 3) to
-                SLOPES.map { input.countTrees(it) }.map { it.toLong() }.reduceRight(Long::times)
+                SLOPES.map { input.countTrees(it) }.toLongProduct()
     }
 
     private fun List<String>.countTrees(angle: Pair<Int, Int>) =
@@ -22,4 +22,5 @@ class TreeFinder : Solver {
         .mapIndexed { i, line -> line[angle.second * i % line.length] }
         .count { it == '#' }
 
+    private fun List<Int>.toLongProduct() = map { it.toLong() }.reduce(Long::times)
 }

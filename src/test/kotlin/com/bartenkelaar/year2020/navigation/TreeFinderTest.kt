@@ -21,10 +21,10 @@ class TreeFinderTest {
     fun `given pattern, count trees encountered by slopes multiplied`() {
         val lines = listOf(
             ".....",
-            "...#.",
-            ".#..."
+            "####.",
+            "##..."
         )
 
-        assertEquals(2, treeFinder.solve(lines).first)
+        assertEquals(4L, treeFinder.solve(lines).second)
     }
 }
