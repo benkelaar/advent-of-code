@@ -1,5 +1,6 @@
 package com.bartenkelaar
 
+import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.expenses.AddUpResolver
@@ -20,6 +21,7 @@ private val solvers2020 = listOf(
     AddUpResolver(SumChecker()),
     PasswordChecker(),
     TreeFinder(),
+    PassportChecker()
 )
 
 fun main() {
@@ -38,4 +40,4 @@ private fun Int.printSolutions(solvers: List<Solver>) {
 }
 
 private fun Any.readFile(fileName: String, year: Int) =
-    javaClass.getResource("/input/$year/$fileName").readText().lines().filter { it.isNotBlank() }
+    javaClass.getResource("/input/$year/$fileName").readText().lines()

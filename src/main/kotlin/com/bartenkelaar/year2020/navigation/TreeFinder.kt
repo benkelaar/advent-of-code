@@ -17,10 +17,10 @@ class TreeFinder : Solver {
                 SLOPES.map { input.countTrees(it) }.toLongProduct()
     }
 
-    private fun List<String>.countTrees(angle: Pair<Int, Int>) =
-        filterIndexed { i, _ -> i % angle.first == 0 }
-        .mapIndexed { i, line -> line[angle.second * i % line.length] }
-        .count { it == '#' }
+    private fun List<String>.countTrees(angle: Pair<Int, Int>) = filter { it.isNotBlank() }
+            .filterIndexed { i, _ -> i % angle.first == 0 }
+            .mapIndexed { i, line -> line[angle.second * i % line.length] }
+            .count { it == '#' }
 
     private fun List<Int>.toLongProduct() = map { it.toLong() }.reduce(Long::times)
 }

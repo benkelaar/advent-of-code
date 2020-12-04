@@ -4,7 +4,7 @@ import com.bartenkelaar.Solver
 
 class WrappingCalculator : Solver {
     override fun solve(input: List<String>): Pair<Int, Int> {
-        val dimensions = input.map { Package.forString(it) }
+        val dimensions = input.filter { it.isNotBlank() }.map { Package.forString(it) }
         return dimensions.map { it.paperRequired() }.sum() to
                 dimensions.map { it.ribbonRequired() }.sum()
     }
