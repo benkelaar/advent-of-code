@@ -8,6 +8,6 @@ class WrappingCalculatorTest {
 
     @Test
     fun `given two dimensions, calculate total correctly`() {
-        assertEquals(24 to 0, calculator.solve(listOf("1x2x3")))
+        assertEquals(24, calculator.solve(listOf("1x2x3")).first)
     }
 }

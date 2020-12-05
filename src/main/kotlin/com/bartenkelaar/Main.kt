@@ -3,6 +3,7 @@ package com.bartenkelaar
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
+import com.bartenkelaar.year2020.boarding.SeatFinder
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
 import com.bartenkelaar.year2020.navigation.TreeFinder
@@ -21,7 +22,8 @@ private val solvers2020 = listOf(
     AddUpResolver(SumChecker()),
     PasswordChecker(),
     TreeFinder(),
-    PassportChecker()
+    PassportChecker(),
+    SeatFinder(),
 )
 
 fun main() {
