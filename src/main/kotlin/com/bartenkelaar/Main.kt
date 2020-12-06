@@ -1,9 +1,11 @@
 package com.bartenkelaar
 
+import com.bartenkelaar.util.readFile
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.boarding.SeatFinder
+import com.bartenkelaar.year2020.customs.CustomsFormsCounter
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
 import com.bartenkelaar.year2020.navigation.TreeFinder
@@ -24,6 +26,7 @@ private val solvers2020 = listOf(
     TreeFinder(),
     PassportChecker(),
     SeatFinder(),
+    CustomsFormsCounter()
 )
 
 fun main() {
@@ -41,5 +44,3 @@ private fun Int.printSolutions(solvers: List<Solver>) {
     println("=======================\n")
 }
 
-private fun Any.readFile(fileName: String, year: Int) =
-    javaClass.getResource("/input/$year/$fileName").readText().lines()

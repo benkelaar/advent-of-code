@@ -1,39 +1,25 @@
 package com.bartenkelaar.year2020.boarding
 
 import com.bartenkelaar.Solver
-import kotlin.math.pow
 
 class SeatFinder : Solver {
-    override fun solve(input: List<String>) =
-        input.filter { it.isNotBlank() }
-            .map { code ->
-            code.map { it.toBinary() }
-                .joinToString("")
-                .toInt(2)
-        }.maxOrNull()!! to 0
-}
-
-data class Seat(
-    val row: Int,
-    val column: Int,
-) {
-    companion object {
-        fun parseFrom(code: String): Seat {
-            val rowPart = code.slice(0..6)
-            val columnPart = code.slice(7..code.lastIndex)
-            return Seat(
-                row = rowPart.toBinaryIndex(),
-                column = columnPart.toBinaryIndex()
-            )
-        }
-
-        private fun String.toBinaryIndex() =
-            map { it.toBinary() }
-                .mapIndexed { i, b -> b.toBInt() * 2.pow(this.lastIndex - i) }
-                .sum()
+    override fun solve(input: List<String>): Pair<Int, Int> {
+        val seats = input.filter { it.isNotBlank() }
+            .map { it.toSeatId() }
+            .sorted()
+        return seats.last() to seats.findFirstOpen()
     }
 }
 
-private fun Int.pow(n: Int) = toDouble().pow(n).toInt()
+private fun String.toSeatId() =
+    map { it.toBinary() }
+        .joinToString("")
+        .toInt(2)
+
+private fun List<Int>.findFirstOpen() =
+    filterIndexed { i, id -> id != last() && (next(i) - id != 1) }
+        .first() + 1
+
 private fun Char.toBinary() = if (this == 'B' || this == 'R') '1' else '0'
-private fun Char.toBInt() = toString().toInt()
+
+private fun <T> List<T>.next(index: Int) = get(index + 1)

@@ -1,0 +1,27 @@
+package com.bartenkelaar.year2020.customs
+
+import com.bartenkelaar.Solver
+import com.bartenkelaar.util.zipPerEmpty
+
+class CustomsFormsCounter : Solver {
+    override fun solve(input: List<String>): Pair<Int, Int> {
+        val groups = input.zipPerEmpty()
+        return groups.map { it.countUniqueCharacters() }.sum() to
+                groups.map { it.countUbiquitousCharacters() }.sum()
+    }
+
+
+}
+
+private fun List<String>.countUbiquitousCharacters() =
+    first()
+        .splitToCharacters()
+        .filter { char -> all { string -> char in string } }
+        .size
+
+private fun List<String>.countUniqueCharacters() =
+    flatMap { it.splitToCharacters() }
+        .toSet()
+        .size
+
+private fun String.splitToCharacters() = split("").filter { it.isNotBlank() }
