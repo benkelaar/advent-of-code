@@ -21,8 +21,7 @@ class LuggageChecker : Solver {
 }
 
 private fun List<LuggageRule>.countBagsIn(color: Color): Int =
-    if (color !in this.map { it.color }) 0
-    else filter { it.color == color }
+    filter { it.color == color }
         .flatMap { it.conditions }
         .map { it.amount * (1 + countBagsIn(it.color)) }
         .sum()
