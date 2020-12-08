@@ -8,6 +8,7 @@ import com.bartenkelaar.year2020.boarding.SeatFinder
 import com.bartenkelaar.year2020.customs.CustomsFormsCounter
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
+import com.bartenkelaar.year2020.handheld.GameRunner
 import com.bartenkelaar.year2020.luggage.LuggageChecker
 import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
@@ -28,7 +29,8 @@ private val solvers2020 = listOf(
     PassportChecker(),
     SeatFinder(),
     CustomsFormsCounter(),
-    LuggageChecker()
+    LuggageChecker(),
+    GameRunner()
 )
 
 fun main() {
