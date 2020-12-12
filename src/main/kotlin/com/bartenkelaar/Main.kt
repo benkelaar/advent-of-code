@@ -4,17 +4,21 @@ import com.bartenkelaar.util.readFile
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
+import com.bartenkelaar.year2020.adapters.JoltChecker
 import com.bartenkelaar.year2020.boarding.SeatFinder
 import com.bartenkelaar.year2020.customs.CustomsFormsCounter
+import com.bartenkelaar.year2020.encryption.XmasBreaker
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
 import com.bartenkelaar.year2020.handheld.GameRunner
 import com.bartenkelaar.year2020.luggage.LuggageChecker
+import com.bartenkelaar.year2020.navigation.FerrySailer
 import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
+import com.bartenkelaar.year2020.seats.ConwaySeating
 
 interface Solver {
-    fun solve(input: List<String>): Pair<Int, Number>
+    fun solve(input: List<String>): Pair<Number, Number>
 }
 
 private val solvers2015 = listOf(
@@ -30,7 +34,11 @@ private val solvers2020 = listOf(
     SeatFinder(),
     CustomsFormsCounter(),
     LuggageChecker(),
-    GameRunner()
+    GameRunner(),
+    XmasBreaker(SumChecker()),
+    JoltChecker(),
+    ConwaySeating(),
+    FerrySailer()
 )
 
 fun main() {

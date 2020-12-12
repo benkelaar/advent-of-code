@@ -1,12 +1,10 @@
 package com.bartenkelaar.year2020.expenses
 
 class SumChecker {
-    fun findPairSum(entries: Set<Int>) = findPairSum(entries, 2020)
-
-    private fun findPairSum(entries: Set<Int>, target: Int): Pair<Int, Int>? {
+    fun findPairSum(entries: Set<Long>, target: Long = 2020): Pair<Long, Long>? {
         val sorted = entries.sorted()
 
-        tailrec fun findPairRecursive(lowIndex: Int, highIndex: Int): Pair<Int, Int>? {
+        tailrec fun findPairRecursive(lowIndex: Int, highIndex: Int): Pair<Long, Long>? {
             if (lowIndex == highIndex) return null
             val low = sorted[lowIndex]
             val high = sorted[highIndex]
@@ -23,7 +21,7 @@ class SumChecker {
     }
 
 
-    fun findTripleSum(entries: Set<Int>): List<Int> {
+    fun findTripleSum(entries: Set<Long>): List<Long> {
         for (entry in entries) {
             val target = 2020 - entry
             findPairSum(entries, target)?.let { return listOf(entry, it.first, it.second) }

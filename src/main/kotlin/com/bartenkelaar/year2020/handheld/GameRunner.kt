@@ -17,7 +17,7 @@ class GameRunner : Solver {
             val mutableInstructions = instructions.toMutableList()
             mutableInstructions[it] = mutableInstructions[it].switch()
             val (value, terminated) = runProgram(mutableInstructions.toList())
-            println("CHANGED INDEX $it to ${mutableInstructions[it]} and it resolved: $terminated")
+//            println("CHANGED INDEX $it to ${mutableInstructions[it]} and it resolved: $terminated")
             if (terminated) return value.first
         }
         throw IllegalStateException()
