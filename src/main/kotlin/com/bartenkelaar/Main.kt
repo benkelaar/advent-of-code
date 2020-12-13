@@ -5,6 +5,7 @@ import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.adapters.JoltChecker
+import com.bartenkelaar.year2020.boarding.BusFinder
 import com.bartenkelaar.year2020.boarding.SeatFinder
 import com.bartenkelaar.year2020.customs.CustomsFormsCounter
 import com.bartenkelaar.year2020.encryption.XmasBreaker
@@ -38,7 +39,8 @@ private val solvers2020 = listOf(
     XmasBreaker(SumChecker()),
     JoltChecker(),
     ConwaySeating(),
-    FerrySailer()
+    FerrySailer(),
+    BusFinder(),
 )
 
 fun main() {
