@@ -1,4 +1,4 @@
-package com.bartenkelaar.year2020.handheld
+package com.bartenkelaar.year2020.gaming
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -11,8 +11,10 @@ import com.bartenkelaar.year2020.customs.CustomsFormsCounter
 import com.bartenkelaar.year2020.encryption.XmasBreaker
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
-import com.bartenkelaar.year2020.handheld.GameRunner
+import com.bartenkelaar.year2020.gaming.GameRunner
+import com.bartenkelaar.year2020.gaming.Memory
 import com.bartenkelaar.year2020.luggage.LuggageChecker
+import com.bartenkelaar.year2020.navigation.DockCommunicator
 import com.bartenkelaar.year2020.navigation.FerrySailer
 import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
@@ -41,6 +43,8 @@ private val solvers2020 = listOf(
     ConwaySeating(),
     FerrySailer(),
     BusFinder(),
+    DockCommunicator(),
+    Memory(2020)
 )
 
 fun main() {

@@ -1,7 +1,7 @@
-package com.bartenkelaar.year2020.handheld
+package com.bartenkelaar.year2020.gaming
 
 import com.bartenkelaar.Solver
-import com.bartenkelaar.year2020.handheld.Operation.*
+import com.bartenkelaar.year2020.gaming.Operation.*
 
 class GameRunner : Solver {
     override fun solve(input: List<String>): Pair<Int, Number> {
@@ -17,7 +17,6 @@ class GameRunner : Solver {
             val mutableInstructions = instructions.toMutableList()
             mutableInstructions[it] = mutableInstructions[it].switch()
             val (value, terminated) = runProgram(mutableInstructions.toList())
-//            println("CHANGED INDEX $it to ${mutableInstructions[it]} and it resolved: $terminated")
             if (terminated) return value.first
         }
         throw IllegalStateException()
