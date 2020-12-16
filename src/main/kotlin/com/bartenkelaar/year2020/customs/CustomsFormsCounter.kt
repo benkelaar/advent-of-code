@@ -9,19 +9,15 @@ class CustomsFormsCounter : Solver {
         return groups.map { it.countUniqueCharacters() }.sum() to
                 groups.map { it.countUbiquitousCharacters() }.sum()
     }
-
-
 }
 
 private fun List<String>.countUbiquitousCharacters() =
-    first()
-        .splitToCharacters()
+    first().toCharArray()
         .filter { char -> all { string -> char in string } }
         .size
 
 private fun List<String>.countUniqueCharacters() =
-    flatMap { it.splitToCharacters() }
+    flatMap { it.toCharArray().toList() }
         .toSet()
         .size
 
-private fun String.splitToCharacters() = split("").filter { it.isNotBlank() }

@@ -1,10 +1,11 @@
 package com.bartenkelaar.year2020.boarding
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.nonBlank
 
 class SeatFinder : Solver {
     override fun solve(input: List<String>): Pair<Int, Int> {
-        val seats = input.filter { it.isNotBlank() }
+        val seats = input.nonBlank()
             .map { it.toSeatId() }
             .sorted()
         return seats.last() to seats.findFirstOpen()

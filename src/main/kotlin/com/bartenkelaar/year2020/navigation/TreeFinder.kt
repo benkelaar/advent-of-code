@@ -1,6 +1,7 @@
 package com.bartenkelaar.year2020.navigation
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.nonBlank
 
 private val SLOPES =
     listOf(
@@ -17,7 +18,7 @@ class TreeFinder : Solver {
                 SLOPES.map { input.countTrees(it) }.toLongProduct()
     }
 
-    private fun List<String>.countTrees(angle: Pair<Int, Int>) = filter { it.isNotBlank() }
+    private fun List<String>.countTrees(angle: Pair<Int, Int>) = nonBlank()
             .filterIndexed { i, _ -> i % angle.first == 0 }
             .mapIndexed { i, line -> line[angle.second * i % line.length] }
             .count { it == '#' }

@@ -7,6 +7,7 @@ import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.adapters.JoltChecker
 import com.bartenkelaar.year2020.boarding.BusFinder
 import com.bartenkelaar.year2020.boarding.SeatFinder
+import com.bartenkelaar.year2020.boarding.TicketTranslator
 import com.bartenkelaar.year2020.customs.CustomsFormsCounter
 import com.bartenkelaar.year2020.encryption.XmasBreaker
 import com.bartenkelaar.year2020.expenses.AddUpResolver
@@ -44,7 +45,8 @@ private val solvers2020 = listOf(
     FerrySailer(),
     BusFinder(),
     DockCommunicator(),
-    Memory(2020)
+    Memory(2020),
+    TicketTranslator(),
 )
 
 fun main() {

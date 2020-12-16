@@ -1,6 +1,7 @@
 package com.bartenkelaar.year2020.passports
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.nonBlank
 
 class PassportChecker : Solver {
     override fun solve(input: List<String>): Pair<Int, Int> {
@@ -31,7 +32,7 @@ data class PassPort(
     companion object {
         fun forLines(lines: List<String>) = PassPort(
             lines.flatMap { it.split(" ") }
-                .filter { it.isNotBlank() }
+                .nonBlank()
                 .map { it.trim().split(":").zipWithNext().first() }
                 .toMap()
         )

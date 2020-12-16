@@ -1,10 +1,11 @@
 package com.bartenkelaar.year2015.packaging
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.nonBlank
 
 class WrappingCalculator : Solver {
     override fun solve(input: List<String>): Pair<Int, Int> {
-        val dimensions = input.filter { it.isNotBlank() }.map { Package.forString(it) }
+        val dimensions = input.nonBlank().map { Package.forString(it) }
         return dimensions.map { it.paperRequired() }.sum() to
                 dimensions.map { it.ribbonRequired() }.sum()
     }

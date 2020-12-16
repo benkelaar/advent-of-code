@@ -1,6 +1,7 @@
 package com.bartenkelaar.year2020.seats
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.nonBlank
 import java.lang.Integer.max
 import java.lang.Integer.min
 import kotlin.math.sign
@@ -9,7 +10,7 @@ typealias Neighbours = (Int, Int, List<List<String>>) -> List<String>
 
 class ConwaySeating : Solver {
     override fun solve(input: List<String>): Pair<Number, Number> {
-        val seats = input.filter { it.isNotBlank() }.map { it.split("") }
+        val seats = input.nonBlank().map { it.split("") }
         return runTillStable(seats, this::findNeighbours, 4).countSeats() to
                 runTillStable(seats, this::findBetterNeighbours, 5).countSeats()
     }
@@ -47,7 +48,7 @@ class ConwaySeating : Solver {
     }
 
     private fun findBetterNeighbours(x: Int, y: Int, seats: List<List<String>>): List<String> {
-        val directions = (-1..1).flatMap { x -> (-1..1).map { y -> x to y } } - (0 to 0)
+        val directions = (-1..1).flatMap { x1 -> (-1..1).map { y1 -> x1 to y1 } } - (0 to 0)
         return directions.mapNotNull { seats.findFirstSeat(x, y, it.first, it.second) }
     }
 

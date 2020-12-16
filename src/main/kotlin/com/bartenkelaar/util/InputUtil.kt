@@ -19,3 +19,5 @@ fun List<String>.zipPerEmpty(): List<List<String>> {
     if (collector.isNotEmpty()) result += collector.toList()
     return result.toList()
 }
+
+fun List<String>.nonBlank() = filter { it.isNotBlank() }
