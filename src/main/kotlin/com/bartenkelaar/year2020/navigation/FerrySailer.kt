@@ -12,8 +12,8 @@ class FerrySailer : Solver {
 
     private fun directControlManhattan(sails: List<Sail>): Int {
         var dir = Direction.EAST
-        var x: Int = 0
-        var y: Int = 0
+        var x = 0
+        var y = 0
 
         fun move(direction: Char, amount: Int) {
             when (direction) {
@@ -84,6 +84,6 @@ enum class Direction(val c: Char) {
         val sign = if (s == 'L') -1 else 1
         val movement = sign * slots
         val target = ordinal + movement
-        return Direction.values()[if (target < 0) 4 + target else if (target > 3) target - 4 else target]
+        return values()[if (target < 0) 4 + target else if (target > 3) target - 4 else target]
     }
 }

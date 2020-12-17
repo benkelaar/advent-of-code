@@ -16,7 +16,6 @@ data class LuggageRule(val color: Color, val conditions: List<Condition>) {
 data class Color(val modifier: String, val colorId: String) {
     constructor(bagDescriptor: String) : this(bagDescriptor.trim().split(" "))
     private constructor(bagDescriptorParts: List<String>) : this(bagDescriptorParts[0], bagDescriptorParts[1])
-
 }
 
 data class Condition(val color: Color, val amount: Int) {

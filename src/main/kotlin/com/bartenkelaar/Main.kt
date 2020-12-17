@@ -1,6 +1,7 @@
 package com.bartenkelaar
 
 import com.bartenkelaar.util.readFile
+import com.bartenkelaar.year2015.delivery.PackageCounter
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
@@ -19,6 +20,7 @@ import com.bartenkelaar.year2020.navigation.DockCommunicator
 import com.bartenkelaar.year2020.navigation.FerrySailer
 import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
+import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
 
 interface Solver {
@@ -28,6 +30,7 @@ interface Solver {
 private val solvers2015 = listOf(
     BracketMover(),
     WrappingCalculator(),
+    PackageCounter(),
 )
 
 private val solvers2020 = listOf(
@@ -47,6 +50,7 @@ private val solvers2020 = listOf(
     DockCommunicator(),
     Memory(2020),
     TicketTranslator(),
+    ConwayPower(),
 )
 
 fun main() {

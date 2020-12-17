@@ -8,7 +8,7 @@ class LuggageChecker : Solver {
         val rules = input.nonBlank().mapNotNull(LuggageRule::forLine)
         val color = Color("shiny", "gold")
 
-        fun countAllFor(colorBags: Set<Color>, colorsFound: Set<Color>): Int {
+        tailrec fun countAllFor(colorBags: Set<Color>, colorsFound: Set<Color>): Int {
             val options = rules.filter { rule -> colorBags.any { bag -> rule.allows(bag) } }
                 .map { it.color }
                 .toSet()

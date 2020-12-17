@@ -67,7 +67,7 @@ class DockCommunicator: Solver {
 }
 
 private fun Map<Int, Char>.applyTo(value: Long): Long {
-    var bits = initialize(value.toString(2).toCharArray().toMutableList())
+    val bits = initialize(value.toString(2).toCharArray().toMutableList())
     forEach { (i, map) ->
         bits[i] = map
     }
