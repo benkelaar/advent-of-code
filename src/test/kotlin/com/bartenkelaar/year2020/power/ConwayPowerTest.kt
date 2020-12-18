@@ -11,7 +11,7 @@ class ConwayPowerSourceTest {
         val result = ConwayPowerSource.forInput(input)
 
         val expected = ConwayPowerSource(
-            setOf(CubeCoordinate(1, 0, 0), CubeCoordinate(2, 1, 0), CubeCoordinate(0, 2, 0))
+            setOf(CubeCoordinate(1, 0, 0, 0), CubeCoordinate(2, 1, 0, 0), CubeCoordinate(0, 2, 0, 0))
         )
         assertEquals(expected, result)
     }
@@ -22,17 +22,17 @@ class ConwayPowerSourceTest {
 
         val result = source.cycle()
 
-        assertEquals(11, result.activeCount())
+        assertEquals(29, result.activeCount())
     }
 }
 
 class CubeCoordinateTest {
     @Test
     fun `given coordinate, find neighbours properly`() {
-        val coordinate = CubeCoordinate(1, 2, 3)
+        val coordinate = CubeCoordinate(1, 2, 3, 0)
 
         val neighbours = coordinate.findNeighbours()
 
-        assertEquals(26, neighbours.size)
+        assertEquals(80, neighbours.size)
     }
 }

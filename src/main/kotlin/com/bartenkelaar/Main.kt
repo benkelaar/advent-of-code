@@ -16,6 +16,7 @@ import com.bartenkelaar.year2020.expenses.SumChecker
 import com.bartenkelaar.year2020.gaming.GameRunner
 import com.bartenkelaar.year2020.gaming.Memory
 import com.bartenkelaar.year2020.luggage.LuggageChecker
+import com.bartenkelaar.year2020.math.ExpressionSolver
 import com.bartenkelaar.year2020.navigation.DockCommunicator
 import com.bartenkelaar.year2020.navigation.FerrySailer
 import com.bartenkelaar.year2020.navigation.TreeFinder
@@ -51,6 +52,7 @@ private val solvers2020 = listOf(
     Memory(2020),
     TicketTranslator(),
     ConwayPower(),
+    ExpressionSolver(),
 )
 
 fun main() {

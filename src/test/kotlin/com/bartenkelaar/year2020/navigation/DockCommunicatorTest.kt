@@ -9,7 +9,7 @@ class DockCommunicatorTest {
     @Test
     fun example() {
         val input = listOf(
-            "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X",
+            "mask = 000000000000000000000000000001XXXX0X",
             "mem[8] = 11",
             "mem[7] = 101",
             "mem[8] = 0",
