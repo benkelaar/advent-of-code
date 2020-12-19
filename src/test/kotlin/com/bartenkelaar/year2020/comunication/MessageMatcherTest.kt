@@ -4,9 +4,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class MessageMatcherTest {
-    val matcher = MessageMatcher()
+    private val matcher = MessageMatcher()
 
-    val complexRules = mapOf(
+    private val complexRules = mapOf(
         42 to "9 14 | 10 1",
         9 to "14 27 | 1 26",
         10 to "23 14 | 28 1",
@@ -117,6 +117,20 @@ class MessageMatcherTest {
         assertEquals(true to 15, loopingAnswer1)
         assertEquals(true to 15, loopingAnswer2)
         assertEquals(true to 15, loopingAnswer3)
+    }
+
+    @Test
+    fun `given rules that should fail, expect them to fail`() {
+        val loopingRuleZero = Rule.parse(0, "8 11", complexRules, true)
+
+        val loopingAnswer1 = loopingRuleZero.matches("abbbbbabbbaaaababbaabbbbabababbbabbbbbbabaaaa")
+        val loopingAnswer2 = loopingRuleZero.matches("aaaabbaaaabbaaa")
+        val loopingAnswer3 = loopingRuleZero.matches("babaaabbbaaabaababbaabababaaab")
+
+        assertEquals(false to 0, loopingAnswer1)
+        assertEquals(false to 0, loopingAnswer2)
+        assertEquals(false to 0, loopingAnswer3)
+
     }
 
     @Test

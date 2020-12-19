@@ -11,7 +11,6 @@ class MessageMatcher : Solver {
         val loopingRuleZero = Rule.parse(0, unparsedRules.getValue(0), unparsedRules, true)
         val simpleCount = messages.count(ruleZero::matchesCompletely)
         val loopingCount = messages.count(loopingRuleZero::matchesCompletely)
-        println(loopingRuleZero.toMatches().first())
         return simpleCount to loopingCount
     }
 
@@ -34,7 +33,7 @@ sealed class Rule {
     companion object {
         fun parse(id: Int, ruleString: String, unparsedRules: Map<Int, String>, loop: Boolean): Rule =
             when {
-                loop && (id == 8 || id == 11) -> parseLoopingRule(id, unparsedRules)
+                loop && id == 0 -> Rule0(unparsedRules.parseBase(42, false), unparsedRules.parseBase(31, false))
                 ruleString.startsWith("\"") -> Match(ruleString.trim('"'))
                 ruleString.contains('|') -> DoubleRule(
                     ruleString.split(" | ").map { parse(id, it, unparsedRules, loop) })
@@ -44,12 +43,6 @@ sealed class Rule {
                         .map { unparsedRules.parseBase(it, loop) })
                 else -> throw IllegalStateException("Unknown rule: $ruleString")
             }
-
-        private fun parseLoopingRule(id: Int, unparsedRules: Map<Int, String>): Rule {
-            val rule42 = unparsedRules.parseBase(42, false)
-            return if (id == 8) Rule8(rule42)
-            else Rule11(rule42, unparsedRules.parseBase(31, false))
-        }
 
         private fun Map<Int, String>.parseBase(id: Int, loop: Boolean) = parse(id, getValue(id), this, loop)
     }
@@ -69,20 +62,13 @@ data class DoubleRule(private val either: Rule, private val or: Rule) : Rule() {
 
 data class CompoundRule(private val rules: List<Rule>) : Rule() {
     override fun matches(string: String): Pair<Boolean, Int> {
-        var matches = true
+        var matches = string.isNotEmpty()
         var i = 0
         var consumed = 0
-        var previousWas8 = false
         while (matches && i < rules.size && consumed < string.length) {
-            val rule = rules[i++]
-            val (match, c) = rule.matches(string.from(consumed))
-            if (!match && previousWas8) {
-                i -= 2
-                continue
-            }
+            val (match, c) = rules[i++].matches(string.from(consumed))
             matches = match
             consumed += c
-            previousWas8 = rule is Rule8
         }
         return if (matches) true to consumed else false to 0
     }
@@ -100,7 +86,11 @@ data class Match(private val match: String) : Rule() {
     override fun toMatches() = setOf(match)
 }
 
-data class Rule11(val rule42: Rule, val rule31: Rule) : Rule() {
+/**
+ * Rule zero consumes an X amount of rule 42s and y amount of rule 31s,
+ * with the requirements that y < x and the string is fully consumed after.
+ */
+data class Rule0(val rule42: Rule, val rule31: Rule) : Rule() {
     override fun matches(string: String): Pair<Boolean, Int> {
         val (initialMatch, initialConsumption) = rule42.matches(string)
 
@@ -112,29 +102,22 @@ data class Rule11(val rule42: Rule, val rule31: Rule) : Rule() {
             if (nextMatch) {
                 firstCount++
                 consumption += nextConsumption
+                if (rule31.matches(string.from(consumption)).first) break
             } else break
         }
 
-        for (i in 0 until firstCount) {
+        for (i in 0 until firstCount - 1) {
             val (nextMatch, nextConsumption) = rule31.matches(string.from(consumption))
-            if (!nextMatch) return false to 0
+            if (!nextMatch) return if (i > 0 && consumption == string.length) true to consumption else false to 0
             consumption += nextConsumption
         }
 
-        return true to consumption
+        return if (consumption == string.length) true to consumption else false to 0
     }
 
     override fun toMatches() = rule42.toMatches()
-        .flatMap { l -> rule31.toMatches().map { r -> "P" + l + "11" + r + "S" } }
+        .flatMap { l -> rule31.toMatches().map { r -> l + "*(x + y)" + r + "*(x)" } }
         .toSet()
-}
-
-data class Rule8(val rule42: Rule) : Rule() {
-    val size = rule42.toMatches().map(String::length).last()
-
-    override fun matches(string: String) = rule42.matches(string)
-
-    override fun toMatches() = rule42.toMatches().map { "R" + it + "8" }.toSet()
 }
 
 private fun String.from(start: Int) = slice(start..lastIndex)

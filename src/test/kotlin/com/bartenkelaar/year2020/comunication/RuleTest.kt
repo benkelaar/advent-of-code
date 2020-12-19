@@ -39,69 +39,49 @@ class RuleTest {
     }
 }
 
-class Rule8Test {
+class Rule0Test {
     @Test
     fun `given simple match, expect them matched`() {
-        val rule8 = Rule8(Match("c"))
+        val rule8 = Rule0(Match("c"), Match("d"))
 
-        val actual = rule8.matches("c")
-
-        assertEquals(true to 1, actual)
-    }
-
-    @Test
-    fun `given repeating match, expect them matched`() {
-        val rule = CompoundRule(listOf(Rule8(Match("c"))))
-
-        val actual = rule.matches("ccc")
+        val actual = rule8.matches("ccd")
 
         assertEquals(true to 3, actual)
     }
 
     @Test
-    fun `given uneager match, expect them matched`() {
-        val rule = CompoundRule(listOf(Rule8(Match("c")), Match("c")))
+    fun `given repeating match, expect them matched`() {
+        val rule = Rule0(Match("c"), Match("d"))
 
-        val actual = rule.matches("cc")
+        val actual = rule.matches("ccccdd")
 
-        assertEquals(true to 2, actual)
+        assertEquals(true to 6, actual)
     }
 
     @Test
     fun `given complex uneager match, expect them matched`() {
-        val rule = CompoundRule(listOf(Match("a"), Rule8(DoubleRule(Match("c"), Match("d"))), CompoundRule(listOf(Match("d"), Match("e")))))
+        val rule = Rule0(DoubleRule(Match("c"), Match("d")), CompoundRule(listOf(Match("d"), Match("e"))))
 
-        val actual = rule.matches("acdcdcde")
+        val actual = rule.matches("cdcdcde")
 
-        assertEquals(true to 8, actual)
-    }
-}
-
-class Rule11Test {
-    @Test
-    fun `given simple match, expect them matched`() {
-        val rule = Rule11(Match("d"), Match("f"))
-
-        val actual = rule.matches("df")
-
-        assertEquals(true to 2, actual)
+        assertEquals(true to 7, actual)
     }
 
     @Test
-    fun `given repeating match, expect them matched`() {
-        val rule = Rule11(Match("d"), Match("f"))
+    fun `given different repeating match, expect them matched`() {
+        val rule = Rule0(Match("d"), Match("f"))
 
-        val actual = rule.matches("ddddffff")
+        val actual = rule.matches("ddddfff")
 
-        assertEquals(true to 8, actual)
+        assertEquals(true to 7, actual)
     }
 
     @Test
-    fun `given uneager match, expect them matched`() {
-        val rule = CompoundRule(listOf(Rule11(Match("d"), Match("f")), Match("f")))
+    fun `given equal patterns, expect total not matched`() {
+        val rule = Rule0(Match("d"), Match("f"))
 
-        val actual = rule.matches("ddfff")
+        val actual = rule.matches("ddff")
 
-        assertEquals(true to 5, actual)
+        assertEquals(false to 0, actual)
     }
 }
