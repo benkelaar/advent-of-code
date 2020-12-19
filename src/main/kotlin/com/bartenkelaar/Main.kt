@@ -9,6 +9,7 @@ import com.bartenkelaar.year2020.adapters.JoltChecker
 import com.bartenkelaar.year2020.boarding.BusFinder
 import com.bartenkelaar.year2020.boarding.SeatFinder
 import com.bartenkelaar.year2020.boarding.TicketTranslator
+import com.bartenkelaar.year2020.comunication.MessageMatcher
 import com.bartenkelaar.year2020.customs.CustomsFormsCounter
 import com.bartenkelaar.year2020.encryption.XmasBreaker
 import com.bartenkelaar.year2020.expenses.AddUpResolver
@@ -53,6 +54,7 @@ private val solvers2020 = listOf(
     TicketTranslator(),
     ConwayPower(),
     ExpressionSolver(),
+    MessageMatcher(),
 )
 
 fun main() {
