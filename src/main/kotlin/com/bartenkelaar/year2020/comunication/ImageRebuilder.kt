@@ -136,7 +136,7 @@ fun List<String>.countMonsters(): Int {
     val bodyRegex = "#.{4}##.{4}##.{4}###".toRegex()
     val tailRegex = ".(#..){6}.".toRegex()
     val monsterMatches = middle().flatMapIndexed { i, line ->
-        bodyRegex.findAll(line).mapNotNull { match ->
+        bodyRegex.findOverlapping(line).mapNotNull { match ->
             match.takeIf {
                 get(i).slice(it.range).matches(headRegex) &&
                         get(i + 2).slice(it.range).matches(tailRegex)
@@ -148,3 +148,13 @@ fun List<String>.countMonsters(): Int {
 
 fun <T> List<T>.middle() = slice(1 until lastIndex)
 fun String.middle() = slice(1 until lastIndex)
+
+fun Regex.findOverlapping(string: String): List<MatchResult> {
+    val match = find(string) ?: return listOf()
+    val matches = mutableListOf(match)
+    while(true) {
+        val nextMatch = find(string, matches.last().range.first + 1)
+        if (nextMatch == null || matches.last() == nextMatch) return matches.toList()
+        matches.add(nextMatch)
+    }
+}
