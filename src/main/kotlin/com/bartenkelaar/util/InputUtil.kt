@@ -19,3 +19,5 @@ fun List<String>.zipPerEmpty(): List<List<String>> {
 }
 
 fun List<String>.nonBlank() = filter { it.isNotBlank() }
+
+fun <T> Collection<T>.only() = first().takeIf { size == 1}!!

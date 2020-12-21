@@ -1,6 +1,7 @@
 package com.bartenkelaar.year2020.comunication
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.only
 import com.bartenkelaar.util.zipPerEmpty
 import kotlin.math.sqrt
 
@@ -79,8 +80,6 @@ class ImageRebuilder(private val sample: Boolean = false) : Solver {
     }
 }
 
-private fun <T> MutableSet<T>.only() = first().takeIf { size == 1}!!
-
 // Edges in order Up, down, left, right
 data class Tile(val id: Int, val edges: List<String>, val lines: List<String>) {
     val matchEdges = edges + edges.map { it.reversed() }.toSet()
@@ -129,7 +128,6 @@ data class Tile(val id: Int, val edges: List<String>, val lines: List<String>) {
         )
     }
 }
-
 
 fun List<String>.countMonsters(): Int {
     val headRegex = ".{18}#.".toRegex()
