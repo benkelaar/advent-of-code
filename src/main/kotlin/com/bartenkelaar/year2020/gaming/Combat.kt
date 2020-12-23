@@ -1,6 +1,7 @@
 package com.bartenkelaar.year2020.gaming
 
 import com.bartenkelaar.Solver
+import com.bartenkelaar.util.tail
 import com.bartenkelaar.util.zipPerEmpty
 
 class Combat : Solver {
@@ -12,8 +13,8 @@ class Combat : Solver {
             .map { deck -> deck.filter { card -> card.first().isDigit() }.map { it.toInt() } }
 
         val (winningDeckSimple, _) = playGame(deck1, deck2,false)
-        val (winningDeckRecursive, _) = playGame(deck1, deck2)
-        return winningDeckSimple.score() to winningDeckRecursive.score()
+//        val (winningDeckRecursive, _) = playGame(deck1, deck2)
+        return winningDeckSimple.score() to 0 // winningDeckRecursive.score()
     }
 
     private tailrec fun playGame(
@@ -53,6 +54,4 @@ class Combat : Solver {
     }
 
     private fun List<Int>.score() = mapIndexed { i, c -> (size - i) * c }.sum()
-
-    private fun <T> List<T>.tail() = slice(1..lastIndex)
 }

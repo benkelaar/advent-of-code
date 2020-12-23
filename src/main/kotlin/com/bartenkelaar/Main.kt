@@ -17,6 +17,7 @@ import com.bartenkelaar.year2020.encryption.XmasBreaker
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
 import com.bartenkelaar.year2020.gaming.Combat
+import com.bartenkelaar.year2020.gaming.Cups
 import com.bartenkelaar.year2020.gaming.GameRunner
 import com.bartenkelaar.year2020.gaming.Memory
 import com.bartenkelaar.year2020.luggage.LuggageChecker
@@ -61,6 +62,7 @@ private val solvers2020 = listOf(
     ImageRebuilder(),
     AllergenFinder(),
     Combat(),
+    Cups(),
 )
 
 fun main() {
