@@ -12,7 +12,9 @@ import com.bartenkelaar.year2020.boarding.TicketTranslator
 import com.bartenkelaar.year2020.comunication.AllergenFinder
 import com.bartenkelaar.year2020.comunication.ImageRebuilder
 import com.bartenkelaar.year2020.comunication.MessageMatcher
+import com.bartenkelaar.year2020.construction.FloorPatternBuilder
 import com.bartenkelaar.year2020.customs.CustomsFormsCounter
+import com.bartenkelaar.year2020.encryption.DoorEncryption
 import com.bartenkelaar.year2020.encryption.XmasBreaker
 import com.bartenkelaar.year2020.expenses.AddUpResolver
 import com.bartenkelaar.year2020.expenses.SumChecker
@@ -63,6 +65,8 @@ private val solvers2020 = listOf(
     AllergenFinder(),
     Combat(),
     Cups(),
+    FloorPatternBuilder(),
+    DoorEncryption()
 )
 
 fun main() {

@@ -1,50 +1,79 @@
 package com.bartenkelaar.year2020.gaming
 
 import com.bartenkelaar.Solver
-import com.bartenkelaar.util.nextAfter
-import com.bartenkelaar.util.nextFrom
-import com.bartenkelaar.util.shiftSo
-import com.bartenkelaar.util.tail
+import com.bartenkelaar.util.only
+import java.lang.StringBuilder
+
+data class Cup(val value: Int, var next: Cup? = null, var previous: Cup? = null) {
+    fun nextThree() = listOf(next!!, next!!.next!!, next!!.next!!.next!!)
+
+    fun linkTo(cup: Cup) {
+        next = cup
+        cup.previous = this
+    }
+
+    override fun toString(): String {
+        val result = StringBuilder("")
+        var next = next!!
+        while (next.value != value) {
+            result.append(next.value)
+            next = next.next!!
+        }
+        return result.toString()
+    }
+}
 
 class Cups : Solver {
     override fun solve(input: List<String>): Pair<Number, Any> {
-        val numbers = input.map { it.toInt() }.toIntArray()
+        val numbers = input.map { it.toInt() }
 
-        val simpleEnd = numbers.playRounds(100)
-        val simpleScore = simpleEnd.shiftSo(1, 0).tail().joinToString("").toLong()
+        val simpleCups = numbers.toCups()
+        playRounds(simpleCups.first(), 100, simpleCups.size)
+        val simpleScore = simpleCups.findLast { it.value == 1 }.toString()
 
-        val manyNumbers = (numbers.toList() + (numbers.size until 1_000_000)).toIntArray()
-        val advancedResult = manyNumbers.playRounds(10_000_000)
+//        val manyCups = (numbers.toList() + (numbers.size until 1_000_000)).toCups()
+//        playRounds(manyCups.first(), 10_000_000, manyCups.size)
+//        val oneCup = manyCups.filter { it.value == 1 }.only()
 
-        return simpleScore to advancedResult.nextAfter(1).toLong() * advancedResult.nextAfter(1, 2).toLong()
+        return simpleScore.toLong() to 0 // oneCup.next!!.value.toLong() * oneCup.next!!.next!!.value.toLong()
     }
 
-    private fun IntArray.playRounds(rounds: Int): List<Int> {
+    private fun List<Int>.toCups(): List<Cup> {
+        val cups = map(::Cup)
+        cups.forEachIndexed { i, cup ->
+            cup.next = cups[(i + 1) % size]
+            cup.next!!.previous = cup
+        }
+        return cups
+    }
+
+    private fun playRounds(startCup: Cup, rounds: Int, maxCupValue: Int) {
+        var currentCup = startCup
         for (i in 0 until rounds) {
-            if (i % 1000 == 0) println("Calculating round: $i")
-            nextRound(i % size)
+            if (i % 10_000 == 0) println("Round played: $i")
+            val nextThree = currentCup.nextThree()
+            currentCup.linkTo(nextThree.last().next!!)
+
+            val targetCup = findTargetCup(currentCup, nextThree, maxCupValue)
+            nextThree.last().linkTo(targetCup.next!!)
+            targetCup.linkTo(nextThree.first())
+
+            currentCup = currentCup.next!!
         }
-        return this.toList()
     }
 
-    private fun IntArray.nextRound(currentIndex: Int) {
-        val current = get(currentIndex)
-        val pickedUp = listOf(get(safe(currentIndex + 1)), get(safe(currentIndex + 2)), get(safe(currentIndex + 3)))
-        val target = (current - 4 until current)
-            .map { if (it < 1) size + it else it }
-            .last { it !in pickedUp }
-
-        var i = safe(currentIndex + 1)
-        while (true) {
-            val newValue = get(safe(i + 3))
-            set(i, newValue)
-            if (newValue == target) break
-            i = safe(i + 1)
+    private fun findTargetCup(
+        currentCup: Cup,
+        nextThree: List<Cup>,
+        maxCupValue: Int
+    ): Cup {
+        val target = (currentCup.value - 4 until currentCup.value)
+            .map { if (it < 1) maxCupValue + it else it }
+            .last { it !in nextThree.map { it.value } }
+        var targetCup = currentCup.previous!!
+        while (targetCup.value != target) {
+            targetCup = targetCup.previous!!
         }
-        pickedUp.forEachIndexed { j, e -> set(safe(i + j + 1), e)}
+        return targetCup
     }
-
-    private fun IntArray.safe(i: Int) = i % size
 }
-
-private fun <T> List<T>.nextThree(index: Int) = listOf(nextFrom(index), nextFrom(index, 2), nextFrom(index, 3))
