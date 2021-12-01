@@ -30,6 +30,7 @@ import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
+import com.bartenkelaar.year2021.measurement.DepthIncreaseMeasurer
 
 interface Solver {
     fun solve(input: List<String>): Pair<Number, Any>
@@ -69,9 +70,14 @@ private val solvers2020 = listOf(
     DoorEncryption()
 )
 
+private val solvers2021 = listOf(
+    DepthIncreaseMeasurer()
+)
+
 fun main() {
-    2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
+//    2015.printSolutions(solvers2015)
+//    2020.printSolutions(solvers2020)
+    2021.printSolutions(solvers2021)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {

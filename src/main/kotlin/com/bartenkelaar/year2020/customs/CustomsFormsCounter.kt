@@ -12,12 +12,7 @@ class CustomsFormsCounter : Solver {
 }
 
 private fun List<String>.countUbiquitousCharacters() =
-    first().toCharArray()
-        .filter { char -> all { string -> char in string } }
-        .size
+    first().toCharArray().count { char -> all { string -> char in string } }
 
-private fun List<String>.countUniqueCharacters() =
-    flatMap { it.toCharArray().toList() }
-        .toSet()
-        .size
+private fun List<String>.countUniqueCharacters() = flatMap { it.toCharArray().toList() }.toSet().size
 
