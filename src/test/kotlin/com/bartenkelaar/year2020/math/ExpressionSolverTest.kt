@@ -3,6 +3,7 @@ package com.bartenkelaar.year2020.math
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@Suppress("DANGEROUS_CHARACTERS")
 class ExpressionTest {
     @Test
     fun `given 1 + 2, calculate sum`() {
@@ -68,6 +69,7 @@ class ExpressionTest {
     }
 }
 
+@Suppress("DANGEROUS_CHARACTERS")
 class AdvancedExpressionTest {
     @Test
     fun `given 1 + 2, calculate sum`() {

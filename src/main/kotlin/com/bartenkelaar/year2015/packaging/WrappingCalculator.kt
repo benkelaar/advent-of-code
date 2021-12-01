@@ -6,8 +6,8 @@ import com.bartenkelaar.util.nonBlank
 class WrappingCalculator : Solver() {
     override fun solve(input: List<String>): Pair<Int, Int> {
         val dimensions = input.nonBlank().map { Package.forString(it) }
-        return dimensions.map { it.paperRequired() }.sum() to
-                dimensions.map { it.ribbonRequired() }.sum()
+        return dimensions.sumOf { it.paperRequired() } to
+                dimensions.sumOf { it.ribbonRequired() }
     }
 }
 

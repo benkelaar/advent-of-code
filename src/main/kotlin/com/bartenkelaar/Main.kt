@@ -6,6 +6,7 @@ import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
 import com.bartenkelaar.year2015.delivery.PackageCounter
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
+import com.bartenkelaar.year2015.lighting.LightInstructionRunner
 import com.bartenkelaar.year2015.mining.AdventCoinMiner
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.adapters.JoltChecker
@@ -40,7 +41,8 @@ private val solvers2015 = listOf(
     WrappingCalculator(),
     PackageCounter(),
     AdventCoinMiner().disabled(),
-    NaughtyNiceClassifier()
+    NaughtyNiceClassifier(),
+    LightInstructionRunner(),
 )
 
 private val solvers2020 = listOf(
@@ -77,8 +79,8 @@ private val solvers2021 = listOf(
 
 fun main() {
     2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
-    2021.printSolutions(solvers2021)
+//    2020.printSolutions(solvers2020)
+//    2021.printSolutions(solvers2021)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {

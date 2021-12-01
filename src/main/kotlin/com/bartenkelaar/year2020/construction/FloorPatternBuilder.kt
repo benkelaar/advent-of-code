@@ -26,7 +26,7 @@ enum class HexDirection(private val mover: HexCoordinate.() -> HexCoordinate) {
         fun listFromInput(input: String): List<HexDirection> {
             val result = mutableListOf<HexDirection>()
             var temp = ""
-            for (c in input.toUpperCase()) {
+            for (c in input.uppercase()) {
                 if (c in "WE") {
                     result += valueOf(temp + c)
                     temp = ""

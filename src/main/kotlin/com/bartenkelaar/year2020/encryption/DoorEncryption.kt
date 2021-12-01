@@ -7,7 +7,7 @@ class DoorEncryption : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val (cardPublicKey, doorPublicKey) = input.nonBlank().map { it.toInt() }
         val cardLoopSize = findLoopSize(cardPublicKey)
-        val doorLoopSize = findLoopSize(doorPublicKey)
+//        val doorLoopSize = findLoopSize(doorPublicKey)
         val encryptionKey = doorPublicKey.encrypt(cardLoopSize)
         return encryptionKey to 0
     }

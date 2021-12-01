@@ -2,8 +2,9 @@ plugins {
     kotlin("jvm") version "1.6.0"
 }
 
-group = "org.example"
+group = "com.bartenkelaar"
 version = "2021.1"
+val targetJvmVersion = "17"
 
 repositories {
     mavenCentral()
@@ -16,6 +17,18 @@ dependencies {
 }
 
 tasks {
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = targetJvmVersion
+        }
+    }
+
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = targetJvmVersion
+        }
+    }
+
     test {
         useJUnitPlatform()
     }
