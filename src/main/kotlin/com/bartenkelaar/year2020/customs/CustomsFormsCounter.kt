@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.customs
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.zipPerEmpty
 
-class CustomsFormsCounter : Solver {
+class CustomsFormsCounter : Solver() {
     override fun solve(input: List<String>): Pair<Int, Int> {
         val groups = input.zipPerEmpty()
         return groups.map { it.countUniqueCharacters() }.sum() to

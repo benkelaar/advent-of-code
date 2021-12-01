@@ -1,8 +1,8 @@
 package com.bartenkelaar.year2020.expenses
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 
-class AddUpResolver(private val sumChecker: SumChecker) : Solver {
+class AddUpResolver(private val sumChecker: SumChecker) : Solver() {
     override fun solve(input: List<String>) = resolve(input.map { it.trim().toLong() }.toSet())
 
     fun resolve(expenses: Set<Long>): Pair<Long, Long> {

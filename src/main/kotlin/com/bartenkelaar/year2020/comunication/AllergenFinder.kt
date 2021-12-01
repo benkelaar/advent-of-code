@@ -1,10 +1,10 @@
 package com.bartenkelaar.year2020.comunication
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import com.bartenkelaar.util.only
 
-class AllergenFinder : Solver {
+class AllergenFinder : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val information = input.nonBlank()
             .map { it.split(" (contains ") }

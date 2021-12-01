@@ -1,9 +1,12 @@
 package com.bartenkelaar
 
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.readFile
+import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
 import com.bartenkelaar.year2015.delivery.PackageCounter
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
+import com.bartenkelaar.year2015.mining.AdventCoinMiner
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.adapters.JoltChecker
 import com.bartenkelaar.year2020.boarding.BusFinder
@@ -32,14 +35,12 @@ import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
 import com.bartenkelaar.year2021.measurement.DepthIncreaseMeasurer
 
-interface Solver {
-    fun solve(input: List<String>): Pair<Number, Any>
-}
-
 private val solvers2015 = listOf(
     BracketMover(),
     WrappingCalculator(),
     PackageCounter(),
+    AdventCoinMiner().disabled(),
+    NaughtyNiceClassifier()
 )
 
 private val solvers2020 = listOf(
@@ -75,8 +76,8 @@ private val solvers2021 = listOf(
 )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
-//    2020.printSolutions(solvers2020)
+    2015.printSolutions(solvers2015)
+    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
 
@@ -85,7 +86,7 @@ private fun Int.printSolutions(solvers: List<Solver>) {
     solvers.forEachIndexed { i, solver ->
         val day = i + 1
         val input = solver.readFile("day$day.txt", this)
-        println("Day $day: ${solver.solve(input)}")
+        println("Day $day: ${solver.maybeSolve(input)}")
     }
     println("=======================\n")
 }

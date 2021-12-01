@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.power
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class ConwayPower : Solver {
+class ConwayPower : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val cubes = input.nonBlank().map { it.toCharArray().toList() }
         var source = ConwayPowerSource.forInput(cubes)

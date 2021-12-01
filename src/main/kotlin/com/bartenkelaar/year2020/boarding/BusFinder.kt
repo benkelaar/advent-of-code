@@ -1,8 +1,8 @@
 package com.bartenkelaar.year2020.boarding
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 
-class BusFinder : Solver {
+class BusFinder : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val timestamp = input.first().trim().toLong()
         val busIndexes = input[1].trim().split(",")

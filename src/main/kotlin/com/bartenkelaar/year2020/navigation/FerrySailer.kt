@@ -1,10 +1,10 @@
 package com.bartenkelaar.year2020.navigation
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import kotlin.math.absoluteValue
 
-class FerrySailer : Solver {
+class FerrySailer : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val sails = input.nonBlank().map { Sail(it[0], it.slice(1..it.lastIndex).toInt()) }
         return directControlManhattan(sails) to waypointManhattan(sails)

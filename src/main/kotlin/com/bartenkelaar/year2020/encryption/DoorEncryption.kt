@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.encryption
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class DoorEncryption : Solver {
+class DoorEncryption : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val (cardPublicKey, doorPublicKey) = input.nonBlank().map { it.toInt() }
         val cardLoopSize = findLoopSize(cardPublicKey)

@@ -1,11 +1,11 @@
 package com.bartenkelaar.year2020.comunication
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.only
 import com.bartenkelaar.util.zipPerEmpty
 import kotlin.math.sqrt
 
-class ImageRebuilder(private val sample: Boolean = false) : Solver {
+class ImageRebuilder(private val sample: Boolean = false) : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val tiles = input.zipPerEmpty()
             .filter { it.isNotEmpty() }

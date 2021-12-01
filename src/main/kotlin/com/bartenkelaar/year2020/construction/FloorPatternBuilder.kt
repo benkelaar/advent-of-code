@@ -1,6 +1,6 @@
 package com.bartenkelaar.year2020.construction
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import kotlin.math.abs
 
@@ -37,7 +37,7 @@ enum class HexDirection(private val mover: HexCoordinate.() -> HexCoordinate) {
     }
 }
 
-class FloorPatternBuilder : Solver {
+class FloorPatternBuilder : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val blackTiles = input.nonBlank()
             .map(HexDirection.Companion::listFromInput)

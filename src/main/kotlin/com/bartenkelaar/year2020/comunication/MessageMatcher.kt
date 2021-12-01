@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.comunication
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class MessageMatcher : Solver {
+class MessageMatcher : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val unparsedRules = input.nonBlank().filter { it.first().isDigit() }.map { it.toRulePair() }.toMap()
         val messages = input.nonBlank().filter { it.first().isLetter() }

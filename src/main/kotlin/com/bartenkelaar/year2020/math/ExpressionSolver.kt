@@ -1,11 +1,11 @@
 package com.bartenkelaar.year2020.math
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import com.bartenkelaar.year2020.math.Operation.PLUS
 import com.bartenkelaar.year2020.math.Operation.TIMES
 
-class ExpressionSolver : Solver {
+class ExpressionSolver : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         return input.totalSum { Expression(it) } to input.totalSum { AdvancedExpression(it) }
     }

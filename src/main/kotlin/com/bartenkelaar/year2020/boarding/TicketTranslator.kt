@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.boarding
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class TicketTranslator : Solver {
+class TicketTranslator : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val ruleLines = input.filter { it.isRuleLine() }
         val rules = ruleLines.nonBlank().map(Rule::fromLine)

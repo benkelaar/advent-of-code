@@ -1,10 +1,10 @@
 package com.bartenkelaar.year2020.gaming
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import com.bartenkelaar.year2020.gaming.Operation.*
 
-class GameRunner : Solver {
+class GameRunner : Solver() {
     override fun solve(input: List<String>): Pair<Int, Number> {
         val instructions = input.nonBlank().map { Instruction.forLine(it.trim()) }
         val (result, _) = runProgram(instructions)

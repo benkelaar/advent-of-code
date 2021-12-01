@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2015.delivery
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.year2015.delivery.Coordinate.Companion.ORIGIN
 
-class PackageCounter : Solver {
+class PackageCounter : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val instructions = input.first().toCharArray().toList()
         return houseDeliveries(instructions).size to

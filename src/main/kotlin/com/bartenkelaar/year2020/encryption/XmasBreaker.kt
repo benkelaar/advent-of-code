@@ -1,10 +1,10 @@
 package com.bartenkelaar.year2020.encryption
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import com.bartenkelaar.year2020.expenses.SumChecker
 
-class XmasBreaker(private val sumChecker: SumChecker) : Solver {
+class XmasBreaker(private val sumChecker: SumChecker) : Solver() {
     override fun solve(input: List<String>): Pair<Long, Number> {
         val numbers = input.nonBlank().map { it.toLong() }
         val key = findKey(numbers)

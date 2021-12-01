@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.adapters
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class JoltChecker : Solver {
+class JoltChecker : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val sorted = input.nonBlank().map { it.toLong() }.sorted()
         val ordered = listOf(0, *sorted.toTypedArray(), sorted.last() + 3)

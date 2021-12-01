@@ -1,8 +1,8 @@
 package com.bartenkelaar.year2020.passwords
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 
-class PasswordChecker : Solver {
+class PasswordChecker : Solver() {
     override fun solve(input: List<String>): Pair<Int, Int> {
         val lines = input.mapNotNull(::parseLine)
         val validSledRentalPasswords = lines.count { it.isValidSledRental() }

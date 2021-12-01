@@ -1,8 +1,8 @@
 package com.bartenkelaar.year2020.navigation
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 
-class DockCommunicator: Solver {
+class DockCommunicator: Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         return valueMask(input) to addressMask(input)
     }

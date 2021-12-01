@@ -1,7 +1,6 @@
 package com.bartenkelaar.year2020.gaming
 
-import com.bartenkelaar.Solver
-import com.bartenkelaar.util.only
+import com.bartenkelaar.util.Solver
 import java.lang.StringBuilder
 
 data class Cup(val value: Int, var next: Cup? = null, var previous: Cup? = null) {
@@ -23,7 +22,7 @@ data class Cup(val value: Int, var next: Cup? = null, var previous: Cup? = null)
     }
 }
 
-class Cups : Solver {
+class Cups : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val numbers = input.map { it.toInt() }
 

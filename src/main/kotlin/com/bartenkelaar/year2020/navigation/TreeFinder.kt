@@ -1,6 +1,6 @@
 package com.bartenkelaar.year2020.navigation
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
 private val SLOPES =
@@ -12,7 +12,7 @@ private val SLOPES =
         2 to 1,
     )
 
-class TreeFinder : Solver {
+class TreeFinder : Solver() {
     override fun solve(input: List<String>): Pair<Int, Number> {
         return input.countTrees(1 to 3) to
                 SLOPES.map { input.countTrees(it) }.toLongProduct()

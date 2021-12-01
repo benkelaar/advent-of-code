@@ -1,10 +1,10 @@
 package com.bartenkelaar.year2020.gaming
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.tail
 import com.bartenkelaar.util.zipPerEmpty
 
-class Combat : Solver {
+class Combat : Solver() {
     private val memory = mutableMapOf<Pair<List<Int>, List<Int>>, Boolean>()
 
     override fun solve(input: List<String>): Pair<Number, Any> {

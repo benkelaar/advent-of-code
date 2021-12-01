@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.passports
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class PassportChecker : Solver {
+class PassportChecker : Solver() {
     override fun solve(input: List<String>): Pair<Int, Int> {
         val passports = input.fold(PassPortBatch(), PassPortBatch::addLine)
         return passports.countValidPassports() to passports.countDataValidPassports()

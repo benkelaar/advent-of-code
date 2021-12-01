@@ -1,9 +1,9 @@
 package com.bartenkelaar.year2020.luggage
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 
-class LuggageChecker : Solver {
+class LuggageChecker : Solver() {
     override fun solve(input: List<String>): Pair<Int, Int> {
         val rules = input.nonBlank().mapNotNull(LuggageRule::forLine)
         val color = Color("shiny", "gold")

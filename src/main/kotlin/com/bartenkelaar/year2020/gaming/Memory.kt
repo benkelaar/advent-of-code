@@ -1,8 +1,8 @@
 package com.bartenkelaar.year2020.gaming
 
-import com.bartenkelaar.Solver
+import com.bartenkelaar.util.Solver
 
-class Memory(private val number: Int) : Solver {
+class Memory(private val number: Int) : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
         val startingNumbers = input.map { it.toInt() }
         val twentyTwentyNumber = findNumber(startingNumbers, number)
