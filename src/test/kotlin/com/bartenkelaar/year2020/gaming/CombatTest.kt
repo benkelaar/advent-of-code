@@ -1,8 +1,10 @@
 package com.bartenkelaar.year2020.gaming
 
+import org.junit.jupiter.api.Disabled
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@Disabled
 class CombatTest {
     private val combat = Combat()
 
