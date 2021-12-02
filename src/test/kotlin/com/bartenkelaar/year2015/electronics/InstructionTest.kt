@@ -1,6 +1,6 @@
-package com.bartenkelaar.year2015.lighting
+package com.bartenkelaar.year2015.electronics
 
-import com.bartenkelaar.year2015.lighting.LightAction.ON
+import com.bartenkelaar.year2015.electronics.LightAction.ON
 import org.junit.jupiter.api.Test
 
 class InstructionTest {

@@ -1,8 +1,8 @@
-package com.bartenkelaar.year2015.lighting
+package com.bartenkelaar.year2015.electronics
 
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
-import com.bartenkelaar.year2015.lighting.LightAction.*
+import com.bartenkelaar.year2015.electronics.LightAction.*
 
 @JvmRecord
 data class LightCoordinate(val x: Int, val y: Int)

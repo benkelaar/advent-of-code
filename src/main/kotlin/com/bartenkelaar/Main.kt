@@ -4,9 +4,10 @@ import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.readFile
 import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
 import com.bartenkelaar.year2015.delivery.PackageCounter
+import com.bartenkelaar.year2015.electronics.BitwiseCircuitryEmulator
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
-import com.bartenkelaar.year2015.lighting.LightInstructionRunner
+import com.bartenkelaar.year2015.electronics.LightInstructionRunner
 import com.bartenkelaar.year2015.mining.AdventCoinMiner
 import com.bartenkelaar.year2015.packaging.WrappingCalculator
 import com.bartenkelaar.year2020.adapters.JoltChecker
@@ -35,6 +36,7 @@ import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
 import com.bartenkelaar.year2021.measurement.DepthIncreaseMeasurer
+import com.bartenkelaar.year2021.movement.SubmarineMover
 
 private val solvers2015 = listOf(
     BracketMover(),
@@ -43,6 +45,7 @@ private val solvers2015 = listOf(
     AdventCoinMiner().disabled(),
     NaughtyNiceClassifier(),
     LightInstructionRunner(),
+    BitwiseCircuitryEmulator(),
 )
 
 private val solvers2020 = listOf(
@@ -74,13 +77,14 @@ private val solvers2020 = listOf(
 )
 
 private val solvers2021 = listOf(
-    DepthIncreaseMeasurer()
+    DepthIncreaseMeasurer(),
+    SubmarineMover(),
 )
 
 fun main() {
-    2015.printSolutions(solvers2015)
+//    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
-//    2021.printSolutions(solvers2021)
+    2021.printSolutions(solvers2021)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {
