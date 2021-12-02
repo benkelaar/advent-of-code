@@ -82,9 +82,9 @@ private val solvers2021 = listOf(
 )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
+    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
-    2021.printSolutions(solvers2021)
+//    2021.printSolutions(solvers2021)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {
