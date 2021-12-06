@@ -5,11 +5,11 @@ import com.bartenkelaar.util.*
 class DiagnosticsReport : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val lines = input.nonBlank()
-        val counts = lines.map { row -> row.map { it.toString().toInt() } }
-            .reduce { acc, row -> acc.zip(row).map { (a, b) -> a + b } }
+        val counts = lines.map { row -> row.map { Bit(it) } }
+            .fold(12 of 0) { acc, row -> acc.zip(row).map { (a, b) -> if (b.set) a + 1 else a } }
 
-        val gamma = counts.joinToString("") { (it >= lines.size / 2).toBitString() }.toInt(2)
-        val epsilon = gamma xor 0b111111111111
+        val gamma = counts.map { Bit(it >= lines.size / 2) }.toInt()
+        val epsilon = gamma xor 0b1111_1111_1111
 
         val oxGen = lines.findMajoritySignal { oneCount, half -> oneCount >= half }
         val co2Scrubber = lines.findMajoritySignal { oneCount, half -> oneCount < half }
@@ -23,8 +23,8 @@ class DiagnosticsReport : Solver() {
         while (remaining.size > 1) {
             val oneCount = remaining.count { it[i] == '1' }
             val half = remaining.size / 2.0
-            val mostCommonBit = test(oneCount, half).toBit()
-            remaining = remaining.filter { it[i] == mostCommonBit }
+            val mostCommonBit = Bit(test(oneCount, half))
+            remaining = remaining.filter { it[i] == mostCommonBit.char }
             i++
         }
         return remaining.only().toInt(2)

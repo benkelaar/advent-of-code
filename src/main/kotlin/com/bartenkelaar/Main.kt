@@ -36,9 +36,12 @@ import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
+import com.bartenkelaar.year2021.entertainment.SquidBingo
 import com.bartenkelaar.year2021.measurement.DepthIncreaseMeasurer
 import com.bartenkelaar.year2021.measurement.DiagnosticsReport
+import com.bartenkelaar.year2021.measurement.HydroMeasurer
 import com.bartenkelaar.year2021.movement.SubmarineMover
+import com.bartenkelaar.year2021.simulation.LanternfishGrowth
 
 private val solvers2015 = listOf(
     BracketMover(),
@@ -83,10 +86,13 @@ private val solvers2021 = listOf(
     DepthIncreaseMeasurer(),
     SubmarineMover(),
     DiagnosticsReport(),
+    SquidBingo(),
+    HydroMeasurer(),
+    LanternfishGrowth(),
 )
 
 fun main() {
-    2015.printSolutions(solvers2015)
+//    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
