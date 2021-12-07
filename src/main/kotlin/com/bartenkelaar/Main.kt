@@ -3,8 +3,11 @@ package com.bartenkelaar
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.readFile
 import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
+import com.bartenkelaar.year2015.classification.NumberCounter
+import com.bartenkelaar.year2015.code.PasswordIncrementer
 import com.bartenkelaar.year2015.code.StringCounter
 import com.bartenkelaar.year2015.delivery.PackageCounter
+import com.bartenkelaar.year2015.delivery.RoutePlanner
 import com.bartenkelaar.year2015.electronics.BitwiseCircuitryEmulator
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.elevators.BracketMover
@@ -40,6 +43,7 @@ import com.bartenkelaar.year2021.entertainment.SquidBingo
 import com.bartenkelaar.year2021.measurement.DepthIncreaseMeasurer
 import com.bartenkelaar.year2021.measurement.DiagnosticsReport
 import com.bartenkelaar.year2021.measurement.HydroMeasurer
+import com.bartenkelaar.year2021.movement.CrabAlignment
 import com.bartenkelaar.year2021.movement.SubmarineMover
 import com.bartenkelaar.year2021.simulation.LanternfishGrowth
 
@@ -52,6 +56,9 @@ private val solvers2015 = listOf(
     LightInstructionRunner(),
     BitwiseCircuitryEmulator(),
     StringCounter(),
+    RoutePlanner(),
+    NumberCounter().disabled(),
+    PasswordIncrementer(),
 )
 
 private val solvers2020 = listOf(
@@ -89,10 +96,11 @@ private val solvers2021 = listOf(
     SquidBingo(),
     HydroMeasurer(),
     LanternfishGrowth(),
+    CrabAlignment()
 )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
+    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
