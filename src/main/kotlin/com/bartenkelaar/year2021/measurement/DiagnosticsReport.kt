@@ -27,6 +27,6 @@ class DiagnosticsReport : Solver() {
             remaining = remaining.filter { it[i] == mostCommonBit.char }
             i++
         }
-        return remaining.only().toInt(2)
+        return remaining.single().toInt(2)
     }
 }

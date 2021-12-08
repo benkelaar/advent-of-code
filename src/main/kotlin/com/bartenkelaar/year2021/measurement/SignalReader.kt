@@ -2,7 +2,6 @@ package com.bartenkelaar.year2021.measurement
 
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
-import com.bartenkelaar.util.only
 
 data class Signal(val signals: Map<Set<Char>, Int>, val output: List<String>) {
     val value get() = output.map { signals[it.toSet()]!! }.joinToString("").toInt()
@@ -12,21 +11,21 @@ data class Signal(val signals: Map<Set<Char>, Int>, val output: List<String>) {
             val (signalString, outputString) = line.split(" | ")
             val signals = signalString.split(" ")
 
-            val oneSignal = signals.only { it.length == 2 }
-            val sevenSignal = signals.only { it.length == 3 }
-            val fourSignal = signals.only { it.length == 4 }
-            val eightSignal = signals.only { it.length == 7 }
-            val sixSignal = signals.only { s -> s.length == 6 && !oneSignal.all { it in s } }
+            val oneSignal = signals.single { it.length == 2 }
+            val sevenSignal = signals.single { it.length == 3 }
+            val fourSignal = signals.single { it.length == 4 }
+            val eightSignal = signals.single { it.length == 7 }
+            val sixSignal = signals.single { s -> s.length == 6 && !oneSignal.all { it in s } }
 
             val oneList = oneSignal.toList()
-            val c = oneList.only { it !in sixSignal }
-            val f = oneList.only { it != c }
-            val twoSignal = signals.only { f !in it }
-            val fiveSignal = signals.only { it.length == 5 && c !in it }
-            val threeSignal = signals.only { it.length == 5 && it != twoSignal && it != fiveSignal }
+            val c = oneList.single { it !in sixSignal }
+            val f = oneList.single { it != c }
+            val twoSignal = signals.single { f !in it }
+            val fiveSignal = signals.single { it.length == 5 && c !in it }
+            val threeSignal = signals.single { it.length == 5 && it != twoSignal && it != fiveSignal }
 
-            val nineSignal = signals.only { it.length == 6 && (it.toSet() - threeSignal.toSet()).size == 1 }
-            val zeroSignal = signals.only { it.length == 6 && it != sixSignal && it != nineSignal }
+            val nineSignal = signals.single { it.length == 6 && (it.toSet() - threeSignal.toSet()).size == 1 }
+            val zeroSignal = signals.single { it.length == 6 && it != sixSignal && it != nineSignal }
 
             return Signal(
                 mapOf(

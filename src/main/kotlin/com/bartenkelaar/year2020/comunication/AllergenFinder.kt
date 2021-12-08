@@ -2,7 +2,6 @@ package com.bartenkelaar.year2020.comunication
 
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
-import com.bartenkelaar.util.only
 
 class AllergenFinder : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
@@ -32,7 +31,7 @@ class AllergenFinder : Solver() {
     private fun downSelectAllergens(allergenOptions: Map<String, Set<String>>, selection: Map<String, String>): Map<String, String> {
         if (allergenOptions.isEmpty()) return selection
         val remainingOptions = (allergenOptions - selection.keys).mapValues { (_, v) -> v - selection.values }
-        val newSelection = selection + allergenOptions.filterValues { it.size == 1 }.mapValues { (_, v) -> v.only() }
+        val newSelection = selection + allergenOptions.filterValues { it.size == 1 }.mapValues { (_, v) -> v.single() }
         return downSelectAllergens(remainingOptions, newSelection)
     }
 }

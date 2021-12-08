@@ -2,7 +2,6 @@ package com.bartenkelaar.year2021.entertainment
 
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
-import com.bartenkelaar.util.only
 import com.bartenkelaar.util.pivot
 
 data class Board(private val rows: List<List<Int>>) {

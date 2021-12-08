@@ -1,7 +1,6 @@
 package com.bartenkelaar.year2020.comunication
 
 import com.bartenkelaar.util.Solver
-import com.bartenkelaar.util.only
 import com.bartenkelaar.util.zipPerEmpty
 import kotlin.math.sqrt
 
@@ -51,7 +50,7 @@ class ImageRebuilder(private val sample: Boolean = false) : Solver() {
         val bottomCornerTopEdge = composition.last().first().bottomEdge
         val bottomLeftCornerTile = unusedCorners.popMatching(bottomCornerTopEdge).toMatchingTop(bottomCornerTopEdge)
         val bottomRow = mutableListOf(bottomLeftCornerTile).fillFrom(unusedTiles, imageCompositionCount - 2)
-        val bottomRightCorner = unusedCorners.only().toMatchingLeft(bottomRow.last().rightEdge)
+        val bottomRightCorner = unusedCorners.single().toMatchingLeft(bottomRow.last().rightEdge)
         composition.add(bottomRow + bottomRightCorner)
 
         return composition.toList()
