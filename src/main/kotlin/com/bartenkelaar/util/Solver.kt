@@ -5,6 +5,6 @@ abstract class Solver {
 
     abstract fun solve(input: List<String>): Pair<Any, Any>
 
-    fun maybeSolve(input: List<String>) = if (disabled) 0 to 0 else solve(input)
+    fun maybeSolve(input: List<String>) = if (disabled) "set to" to "disabled" else solve(input)
     fun disabled() = apply { disabled = true }
 }

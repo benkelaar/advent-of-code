@@ -12,8 +12,10 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("com.google.code.gson:gson:2.8.9")
+
     testImplementation(kotlin("test-junit5"))
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 }
 
 tasks {

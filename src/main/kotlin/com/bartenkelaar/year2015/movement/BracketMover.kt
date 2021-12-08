@@ -1,4 +1,4 @@
-package com.bartenkelaar.year2015.elevators
+package com.bartenkelaar.year2015.movement
 
 import com.bartenkelaar.util.Solver
 

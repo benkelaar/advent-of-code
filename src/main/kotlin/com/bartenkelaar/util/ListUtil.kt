@@ -2,6 +2,8 @@ package com.bartenkelaar.util
 
 fun <T> Collection<T>.only() = first().takeIf { size == 1}!!
 
+fun <T> Collection<T>.only(filter: (T) -> Boolean) = filter(filter).only()
+
 fun <T> List<T>.shiftSo(value: T, targetIndex: Int): List<T> {
     val currentIndex = indexOf(value)
     val difference = targetIndex - currentIndex

@@ -1,4 +1,4 @@
-package com.bartenkelaar.year2015.elevators
+package com.bartenkelaar.year2015.movement
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
