@@ -49,6 +49,7 @@ import com.bartenkelaar.year2021.measurement.DiagnosticsReport
 import com.bartenkelaar.year2021.measurement.HydroMeasurer
 import com.bartenkelaar.year2021.measurement.SignalReader
 import com.bartenkelaar.year2021.movement.CrabAlignment
+import com.bartenkelaar.year2021.movement.SmokeAvoidance
 import com.bartenkelaar.year2021.movement.SubmarineMover
 import com.bartenkelaar.year2021.simulation.LanternfishGrowth
 
@@ -107,6 +108,7 @@ private val solvers2021 = listOf(
     LanternfishGrowth(),
     CrabAlignment(),
     SignalReader(),
+    SmokeAvoidance(),
 )
 
 fun main() {

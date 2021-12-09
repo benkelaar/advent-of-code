@@ -1,7 +1,8 @@
 package com.bartenkelaar.year2015.delivery
 
+import com.bartenkelaar.util.Coordinate
+import com.bartenkelaar.util.Coordinate.Companion.ORIGIN
 import com.bartenkelaar.util.Solver
-import com.bartenkelaar.year2015.delivery.Coordinate.Companion.ORIGIN
 
 class PackageCounter : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {
@@ -22,17 +23,11 @@ class PackageCounter : Solver() {
     }
 }
 
-data class Coordinate(val x: Int, val y: Int) {
-    fun move(c: Char) =
-        when (c) {
-            '^' -> Coordinate(x, y + 1)
-            '>' -> Coordinate(x + 1, y)
-            'v' -> Coordinate(x, y - 1)
-            '<' -> Coordinate(x - 1, y)
-            else -> throw IllegalArgumentException("Unknown direction: '$c'")
-        }
-
-    companion object {
-        val ORIGIN = Coordinate(0, 0)
+private fun Coordinate.move(c: Char) =
+    when (c) {
+        '^' -> Coordinate(x, y + 1)
+        '>' -> Coordinate(x + 1, y)
+        'v' -> Coordinate(x, y - 1)
+        '<' -> Coordinate(x - 1, y)
+        else -> throw IllegalArgumentException("Unknown direction: '$c'")
     }
-}
