@@ -143,8 +143,8 @@ fun List<String>.countMonsters(): Int {
     return monsterMatches.size
 }
 
-fun <T> List<T>.middle() = slice(1 until lastIndex)
-fun String.middle() = slice(1 until lastIndex)
+private fun <T> List<T>.middle() = slice(1 until lastIndex)
+private fun String.middle() = slice(1 until lastIndex)
 
 fun Regex.findOverlapping(string: String): List<MatchResult> {
     val match = find(string) ?: return listOf()
