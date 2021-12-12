@@ -8,8 +8,8 @@ class CrabAlignment : Solver() {
         val positions = input.first().split(',').map { it.toInt() }
 
         val naiveFuelSpent = findMinimumFuel(positions)
-        val advanceFuelSpent = findMinimumFuel(positions) { ((it * (it + 1)) / 2) }
-        return naiveFuelSpent to advanceFuelSpent
+        val advancedFuelSpent = findMinimumFuel(positions) { ((it * (it + 1)) / 2) }
+        return naiveFuelSpent to advancedFuelSpent
     }
 
     private fun findMinimumFuel(positions: List<Int>, transform: (Int) -> Int = { it }): Int {

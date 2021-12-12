@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class LanternfishGrowthTest {
-    private val growth = LanternfishGrowth()
+    private val growth = LanternFishGrowth()
 
     @Test
     fun `test example case`() {

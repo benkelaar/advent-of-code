@@ -15,10 +15,11 @@ data class Board(private val rows: List<List<Int>>) {
     companion object {
         fun forLines(lines: List<String>): Board {
             require(lines.nonBlank().size == 5)
-            val rows = lines.map {
-                val ns = it.trim().split("\\s+".toRegex())
-                ns.map { it.toInt()
-                } }
+            val rows = lines.map { row ->
+                row.trim()
+                    .split("\\s+".toRegex())
+                    .map { it.toInt() }
+            }
             return Board(rows)
         }
     }

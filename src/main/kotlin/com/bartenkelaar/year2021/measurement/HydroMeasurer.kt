@@ -53,5 +53,5 @@ class HydroMeasurer : Solver() {
         return horizontalVents.countBiggerThanOne() to vents.countBiggerThanOne()
     }
 
-    private fun MutableList<MutableList<Int>>.countBiggerThanOne() = sumOf { it.count { it > 1 } }
+    private fun List<List<Int>>.countBiggerThanOne() = sumOf { row -> row.count { it > 1 } }
 }

@@ -42,11 +42,11 @@ class NavigationFixer : Solver() {
         return corruptionScore to middleCompletionScore
     }
 
-    private tailrec fun classifyLine(openChunks: List<ChunkType>, line: List<Char>): SyntaxState {
-        if (line.isEmpty()) return if (openChunks.isEmpty()) OK else Incomplete(openChunks.reversed())
-        if (line.first() in openChars) return classifyLine(openChunks + ChunkType.forOpen(line.first()), line.tail())
-        if (line.first() == openChunks.last().close) return classifyLine(openChunks.subList(0, openChunks.lastIndex), line.tail())
-        return Corrupted(ChunkType.forClose(line.first()))
+    private tailrec fun classifyLine(openChunks: List<ChunkType>, line: List<Char>): SyntaxState = when {
+        line.isEmpty() -> if (openChunks.isEmpty()) OK else Incomplete(openChunks)
+        line.first() in openChars -> classifyLine(listOf(ChunkType.forOpen(line.first())) + openChunks, line.tail())
+        line.first() == openChunks.first().close -> classifyLine(openChunks.tail(), line.tail())
+        else -> Corrupted(ChunkType.forClose(line.first()))
     }
 
     private fun List<ChunkType>.scoreCompletion() =

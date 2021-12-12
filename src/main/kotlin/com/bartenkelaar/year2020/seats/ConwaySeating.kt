@@ -6,7 +6,7 @@ import java.lang.Integer.max
 import java.lang.Integer.min
 import kotlin.math.sign
 
-typealias Neighbours = (Int, Int, List<List<String>>) -> List<String>
+private typealias Neighbours = (Int, Int, List<List<String>>) -> List<String>
 
 class ConwaySeating : Solver() {
     override fun solve(input: List<String>): Pair<Number, Number> {

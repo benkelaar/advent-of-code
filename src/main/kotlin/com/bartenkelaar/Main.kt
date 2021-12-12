@@ -44,15 +44,9 @@ import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
 import com.bartenkelaar.year2021.entertainment.SquidBingo
-import com.bartenkelaar.year2021.measurement.DepthIncreaseMeasurer
-import com.bartenkelaar.year2021.measurement.DiagnosticsReport
-import com.bartenkelaar.year2021.measurement.HydroMeasurer
-import com.bartenkelaar.year2021.measurement.SignalReader
-import com.bartenkelaar.year2021.movement.CrabAlignment
-import com.bartenkelaar.year2021.movement.NavigationFixer
-import com.bartenkelaar.year2021.movement.SmokeAvoidance
-import com.bartenkelaar.year2021.movement.SubmarineMover
-import com.bartenkelaar.year2021.simulation.LanternfishGrowth
+import com.bartenkelaar.year2021.measurement.*
+import com.bartenkelaar.year2021.movement.*
+import com.bartenkelaar.year2021.simulation.LanternFishGrowth
 
 private val solvers2015 = listOf(
     BracketMover(),
@@ -106,16 +100,18 @@ private val solvers2021 = listOf(
     DiagnosticsReport(),
     SquidBingo(),
     HydroMeasurer(),
-    LanternfishGrowth(),
+    LanternFishGrowth(),
     CrabAlignment(),
     SignalReader(),
     SmokeAvoidance(),
     NavigationFixer(),
+    OctoFlashCounter(),
+    PathNavigator(),
 )
 
 fun main() {
-    2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
+//    2015.printSolutions(solvers2015)
+//    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
 

@@ -2,7 +2,7 @@ package com.bartenkelaar.year2021.simulation
 
 import com.bartenkelaar.util.Solver
 
-class LanternfishGrowth : Solver() {
+class LanternFishGrowth : Solver() {
     override fun solve(input: List<String>): Pair<Number, Any> {
         val ages = input.first().split(',').map { it.toInt() }
 
