@@ -59,9 +59,9 @@ private val solvers2015 = listOf(
     StringCounter(),
     RoutePlanner(),
     NumberCounter().disabled(),
-    PasswordIncrementer(),
+    PasswordIncrementer().disabled(),
     JsonCounter(),
-    SeatingArranger(),
+    SeatingArranger().disabled(),
     ReindeerRacer(),
     CookieBaker()
 )
@@ -106,12 +106,13 @@ private val solvers2021 = listOf(
     SmokeAvoidance(),
     NavigationFixer(),
     OctoFlashCounter(),
-    PathNavigator(),
+    PathNavigator().disabled(),
+    InstructionOrigami(),
 )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
-//    2020.printSolutions(solvers2020)
+    2015.printSolutions(solvers2015)
+    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
 
