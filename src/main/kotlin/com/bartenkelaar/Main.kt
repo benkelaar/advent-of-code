@@ -44,6 +44,7 @@ import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
 import com.bartenkelaar.year2021.entertainment.SquidBingo
+import com.bartenkelaar.year2021.materials.PolymerCreation
 import com.bartenkelaar.year2021.measurement.*
 import com.bartenkelaar.year2021.movement.*
 import com.bartenkelaar.year2021.simulation.LanternFishGrowth
@@ -108,11 +109,12 @@ private val solvers2021 = listOf(
     OctoFlashCounter(),
     PathNavigator().disabled(),
     InstructionOrigami(),
+    PolymerCreation(),
 )
 
 fun main() {
-    2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
+//    2015.printSolutions(solvers2015)
+//    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
 

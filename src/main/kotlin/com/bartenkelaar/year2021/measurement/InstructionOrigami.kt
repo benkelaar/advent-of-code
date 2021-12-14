@@ -30,7 +30,7 @@ private data class Fold(val d: Direction, val foldLine: Int) {
 class InstructionOrigami : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
         val coordinates = input.nonBlank()
-            .filter { it[0].isDigit() }
+            .filter { it.first().isDigit() }
             .map { it.split(",") }
             .map { (x, y) -> Coordinate(x.toInt(), y.toInt()) }
             .toSet()
@@ -48,7 +48,7 @@ class InstructionOrigami : Solver() {
     private fun Set<Coordinate>.print() {
         for (y in 0..maxOf { it.y }) {
             for (x in 0..maxOf { it.x }) {
-                print(if (Coordinate(x, y) in this) 'I' else '.')
+                print(if (Coordinate(x, y) in this) '⬜' else '⬛')
             }
             println()
         }
