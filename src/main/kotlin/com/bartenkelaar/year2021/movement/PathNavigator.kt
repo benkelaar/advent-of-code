@@ -13,7 +13,7 @@ private data class Path(val path: List<Cave>) {
 
     fun reachedEnd() = path.last().name == "end"
 
-    fun withOrNull(c: Cave, maxDoubles: Int): Path? = Path(path + c).takeIf { it.isValid(maxDoubles) }
+    fun withOrNull(c: Cave, maxDoubles: Int) = Path(path + c).takeIf { it.isValid(maxDoubles) }
 
     private fun isValid(maxDoubles: Int) = path.count { it.small } - path.toSet().count { it.small } <= maxDoubles
 

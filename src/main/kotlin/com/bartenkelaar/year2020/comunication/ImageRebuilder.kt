@@ -128,7 +128,7 @@ data class Tile(val id: Int, val edges: List<String>, val lines: List<String>) {
     }
 }
 
-private fun List<String>.countMonsters(): Int {
+fun List<String>.countMonsters(): Int {
     val headRegex = ".{18}#.".toRegex()
     val bodyRegex = "#.{4}##.{4}##.{4}###".toRegex()
     val tailRegex = ".(#..){6}.".toRegex()
