@@ -113,6 +113,8 @@ private val solvers2021 = listOf(
     PolymerCreation(),
     ChitonAvoidance().disabled(),
     BitsDecoder(),
+    ProbeLauncher(),
+    SnailfishMath(),
 )
 
 fun main() {
