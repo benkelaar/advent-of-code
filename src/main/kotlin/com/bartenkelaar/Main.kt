@@ -115,6 +115,7 @@ private val solvers2021 = listOf(
     BitsDecoder(),
     ProbeLauncher(),
     SnailfishMath(),
+    BeaconScanner(),
 )
 
 fun main() {

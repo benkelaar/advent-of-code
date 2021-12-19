@@ -9,9 +9,9 @@ private sealed interface SnailfishNumber {
     fun magnitude(): Long
 
     fun addReduce(snailfishNumber: SnailfishNumber): SnailfishNumber {
-        var result: SnailfishNumber = SnailfishPair(nest(), snailfishNumber.nest(), 0)
+        var result = SnailfishPair(nest(), snailfishNumber.nest(), 0)
         while (result.shouldExplode() || result.shouldSplit()) {
-            result = if (result.shouldExplode()) result.explode().result else result.split()
+            result = if (result.shouldExplode()) result.explode().result as SnailfishPair else result.split()
         }
         return result
     }
@@ -92,7 +92,7 @@ private data class SnailfishPair(val left: SnailfishNumber, val right: Snailfish
             }
         }
 
-    override fun shouldExplode() = nestCount > 3 || left.shouldExplode() || right.shouldExplode()
+    override fun shouldExplode(): Boolean = nestCount > 3 || left.shouldExplode() || right.shouldExplode()
 
     override fun nest() = SnailfishPair(left.nest(), right.nest(), nestCount + 1)
 
