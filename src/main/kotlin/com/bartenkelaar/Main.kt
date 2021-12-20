@@ -49,6 +49,9 @@ import com.bartenkelaar.year2021.materials.PolymerCreation
 import com.bartenkelaar.year2021.measurement.*
 import com.bartenkelaar.year2021.movement.*
 import com.bartenkelaar.year2021.simulation.LanternFishGrowth
+import java.time.OffsetDateTime
+import java.time.temporal.ChronoUnit
+import java.time.temporal.ChronoUnit.MILLIS
 
 private val solvers2015 = listOf(
     BracketMover(),
@@ -115,12 +118,13 @@ private val solvers2021 = listOf(
     BitsDecoder(),
     ProbeLauncher(),
     SnailfishMath(),
-    BeaconScanner(),
+    BeaconScanner().disabled(),
+    OceanFloorMapper(),
 )
 
 fun main() {
-    2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
+//    2015.printSolutions(solvers2015)
+//    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
 
@@ -129,7 +133,10 @@ private fun Int.printSolutions(solvers: List<Solver>) {
     solvers.forEachIndexed { i, solver ->
         val day = i + 1
         val input = solver.readFile("day$day.txt", this)
-        println("Day $day: ${solver.maybeSolve(input)}")
+        val startTime = OffsetDateTime.now()
+        val result = solver.maybeSolve(input)
+        val duration = startTime.until(OffsetDateTime.now(), MILLIS)
+        println("Day $day: $result in $duration milliseconds")
     }
     println("=======================\n")
 }
