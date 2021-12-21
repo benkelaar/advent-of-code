@@ -3,6 +3,8 @@ package com.bartenkelaar
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.readFile
 import com.bartenkelaar.year2015.baking.CookieBaker
+import com.bartenkelaar.year2015.baking.EggNogStore
+import com.bartenkelaar.year2015.classification.AuntSueSelector
 import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
 import com.bartenkelaar.year2015.classification.NumberCounter
 import com.bartenkelaar.year2015.code.JsonCounter
@@ -44,6 +46,7 @@ import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
 import com.bartenkelaar.year2021.communication.BitsDecoder
+import com.bartenkelaar.year2021.entertainment.DiracDice
 import com.bartenkelaar.year2021.entertainment.SquidBingo
 import com.bartenkelaar.year2021.materials.PolymerCreation
 import com.bartenkelaar.year2021.measurement.*
@@ -68,7 +71,9 @@ private val solvers2015 = listOf(
     JsonCounter(),
     SeatingArranger().disabled(),
     ReindeerRacer(),
-    CookieBaker()
+    CookieBaker(),
+    AuntSueSelector(),
+    EggNogStore()
 )
 
 private val solvers2020 = listOf(
@@ -119,12 +124,13 @@ private val solvers2021 = listOf(
     ProbeLauncher(),
     SnailfishMath(),
     BeaconScanner().disabled(),
-    OceanFloorMapper(),
+    OceanFloorMapper().disabled(),
+    DiracDice(),
 )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
-//    2020.printSolutions(solvers2020)
+    2015.printSolutions(solvers2015)
+    2020.printSolutions(solvers2020)
     2021.printSolutions(solvers2021)
 }
 

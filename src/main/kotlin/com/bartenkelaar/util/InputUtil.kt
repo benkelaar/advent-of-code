@@ -3,19 +3,10 @@ package com.bartenkelaar.util
 fun Any.readFile(fileName: String, year: Int) =
     javaClass.getResource("/input/$year/$fileName").readText().lines()
 
-fun List<String>.zipPerEmpty(): List<List<String>> {
-    val result = mutableListOf<List<String>>()
-    var collector = mutableListOf<String>()
-    for (str in this) {
-        if (str.isBlank()) {
-            result += collector.toList()
-            collector = mutableListOf()
-        } else {
-            collector.add(str)
-        }
-    }
-    if (collector.isNotEmpty()) result += collector.toList()
-    return result.toList()
-}
+fun List<String>.zipPerEmpty(): List<List<String>> =
+    (listOf(-1) + mapIndexedNotNull { i, line -> i.takeIf { line.isBlank() } } + size)
+        .zipWithNext()
+        .map { (f, t) -> subList(f + 1, t) }
+        .filter { it.isNotEmpty() }
 
 fun List<String>.nonBlank() = filter { it.isNotBlank() }
