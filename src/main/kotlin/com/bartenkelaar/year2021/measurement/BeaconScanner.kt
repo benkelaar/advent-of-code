@@ -1,28 +1,13 @@
 package com.bartenkelaar.year2021.measurement
 
+import com.bartenkelaar.util.Coordinate3D
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.tail
 import com.bartenkelaar.util.zipPerEmpty
-import kotlin.math.absoluteValue
 
 private val xRotations = 0..3
 private val yRotations = xRotations.flatMap { x -> (0..3).map { y -> Coordinate3D(x, y, 0) } }
 private val allRotations = yRotations + xRotations.flatMap { x -> listOf(1, 3).map { z -> Coordinate3D(x, 0, z) } }
-
-private data class Coordinate3D(val x: Int, val y: Int, val z: Int) {
-    fun manhattan(target: Coordinate3D) = (x - target.x).absoluteValue + (y - target.y).absoluteValue + (z - target.z).absoluteValue
-
-    operator fun minus(other: Coordinate3D) = Coordinate3D(x - other.x, y - other.y, z - other.z)
-    operator fun plus(offset: Coordinate3D) = Coordinate3D(x + offset.x, y + offset.y, z + offset.z)
-    fun rotate(angles: Coordinate3D): Coordinate3D {
-        val (y1, z1) = rotate(angles.x, y, z)
-        val (x1, z2) = rotate(angles.y, x, z1)
-        val (x2, y2) = rotate(angles.z, x1, y1)
-        return Coordinate3D(x2, y2, z2)
-    }
-
-    private fun rotate(amount: Int, x: Int, y: Int) = listOf(x, y, -x, -y, x).subList(amount, amount + 2)
-}
 
 private data class ScannerMeasurements(val measurements: Set<Coordinate3D>) {
     val rotations = allRotations.associateWith { rotation -> measurements.map { it.rotate(rotation) }.toSet() }

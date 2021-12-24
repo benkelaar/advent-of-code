@@ -19,7 +19,7 @@ private value class OceanFloorImage(val grid: Grid<Char>) {
 @JvmInline
 private value class Decoder(val keyString: String) {
     fun decode(oceanFloorImage: OceanFloorImage, default: Char) = OceanFloorImage(
-        oceanFloorImage.grid.mapWithNeighboursOrDefault(default) { keyString[it.toDecodeIndex()] }
+        oceanFloorImage.grid.mapWithNeighboursOrDefault(default) { _, neighbours -> keyString[neighbours.toDecodeIndex()] }
     )
 
     private fun Grid<Char>.toDecodeIndex() =

@@ -4,6 +4,7 @@ import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.readFile
 import com.bartenkelaar.year2015.baking.CookieBaker
 import com.bartenkelaar.year2015.baking.EggNogStore
+import com.bartenkelaar.year2015.baking.ReindeerMedicineBaker
 import com.bartenkelaar.year2015.classification.AuntSueSelector
 import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
 import com.bartenkelaar.year2015.classification.NumberCounter
@@ -13,6 +14,7 @@ import com.bartenkelaar.year2015.code.StringCounter
 import com.bartenkelaar.year2015.delivery.PackageCounter
 import com.bartenkelaar.year2015.delivery.RoutePlanner
 import com.bartenkelaar.year2015.electronics.BitwiseCircuitryEmulator
+import com.bartenkelaar.year2015.electronics.LightAnimator
 import com.bartenkelaar.year2020.passports.PassportChecker
 import com.bartenkelaar.year2015.movement.BracketMover
 import com.bartenkelaar.year2015.electronics.LightInstructionRunner
@@ -45,6 +47,8 @@ import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
+import com.bartenkelaar.year2021.movement.AmphipodArrangerY21D23
+import com.bartenkelaar.year2021.Y21D24
 import com.bartenkelaar.year2021.communication.BitsDecoder
 import com.bartenkelaar.year2021.entertainment.DiracDice
 import com.bartenkelaar.year2021.entertainment.SquidBingo
@@ -53,7 +57,6 @@ import com.bartenkelaar.year2021.measurement.*
 import com.bartenkelaar.year2021.movement.*
 import com.bartenkelaar.year2021.simulation.LanternFishGrowth
 import java.time.OffsetDateTime
-import java.time.temporal.ChronoUnit
 import java.time.temporal.ChronoUnit.MILLIS
 
 private val solvers2015 = listOf(
@@ -73,7 +76,9 @@ private val solvers2015 = listOf(
     ReindeerRacer(),
     CookieBaker(),
     AuntSueSelector(),
-    EggNogStore()
+    EggNogStore(),
+    LightAnimator(),
+    ReindeerMedicineBaker(),
 )
 
 private val solvers2020 = listOf(
@@ -101,7 +106,7 @@ private val solvers2020 = listOf(
     Combat(),
     Cups(),
     FloorPatternBuilder(),
-    DoorEncryption()
+    DoorEncryption(),
 )
 
 private val solvers2021 = listOf(
@@ -126,6 +131,9 @@ private val solvers2021 = listOf(
     BeaconScanner().disabled(),
     OceanFloorMapper().disabled(),
     DiracDice(),
+    ReactorStarter(),
+    AmphipodArrangerY21D23().disabled(),
+    Y21D24(),
 )
 
 fun main() {
