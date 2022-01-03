@@ -6,6 +6,8 @@ data class Grid<T>(val rows: List<List<T>>) {
 
     fun <U> flattenedMap(mapper: (T) -> U) = rows.flatten().map(mapper)
 
+    fun <U> map(mapper: (T) -> U) = Grid(rows.map { row -> row.map { value -> mapper(value) } })
+
     fun <U> mapCoordinated(mapper: (Coordinate, T) -> U) = Grid(rows.mapIndexed { y, row ->
             row.mapIndexed { x, value -> mapper(Coordinate(x, y), value) }
     })
@@ -20,6 +22,8 @@ data class Grid<T>(val rows: List<List<T>>) {
         }))
     }
 
+    operator fun get(c: Coordinate) = rows[c.y][c.x]
+
     fun with(vararg values: Pair<Coordinate, T>) = with(values.toMap())
     fun with(values: Map<Coordinate, T>) = mapCoordinated { c, v -> values[c] ?: v }
 
@@ -29,6 +33,15 @@ data class Grid<T>(val rows: List<List<T>>) {
     private fun <V> List<V>.getNeighboursOrDefault(index: Int, default: (Int) -> V) =
         listOf(getOrElse(index - 1, default), this[index], getOrElse(index + 1, default))
 
+    fun anyCoordinated(condition: (Coordinate, T) -> Boolean): Boolean {
+        for (y in rows.indices) {
+            for (x in rows[y].indices) {
+                if (condition(Coordinate(x, y), rows[y][x])) return true
+            }
+        }
+        return false
+    }
+
     companion object {
         fun forChars(lines: List<String>) = Grid(lines.nonBlank().map { it.toList() })
 
@@ -36,3 +49,5 @@ data class Grid<T>(val rows: List<List<T>>) {
             Grid(input.nonBlank().map { row -> row.toList().map { Bit(it, trueValue) } })
     }
 }
+
+fun <T> Grid<T>.print(toString: (T) -> String) = rows.forEach { println(it.joinToString("", transform = toString)) }

@@ -47,6 +47,7 @@ import com.bartenkelaar.year2020.navigation.TreeFinder
 import com.bartenkelaar.year2020.passwords.PasswordChecker
 import com.bartenkelaar.year2020.power.ConwayPower
 import com.bartenkelaar.year2020.seats.ConwaySeating
+import com.bartenkelaar.year2021.SeaCucumberMoverYear21Day25
 import com.bartenkelaar.year2021.movement.AmphipodArrangerY21D23
 import com.bartenkelaar.year2021.Y21D24
 import com.bartenkelaar.year2021.communication.BitsDecoder
@@ -134,6 +135,7 @@ private val solvers2021 = listOf(
     ReactorStarter(),
     AmphipodArrangerY21D23().disabled(),
     Y21D24(),
+    SeaCucumberMoverYear21Day25(),
 )
 
 fun main() {
