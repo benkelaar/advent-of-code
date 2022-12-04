@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.6.0"
+    application
 }
 
 group = "com.bartenkelaar"
@@ -16,6 +17,10 @@ dependencies {
 
     testImplementation(kotlin("test-junit5"))
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+}
+
+application {
+    mainClass.set("com.bartenkelaar.MainKt")
 }
 
 tasks {

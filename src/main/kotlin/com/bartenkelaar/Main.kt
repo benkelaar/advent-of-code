@@ -57,6 +57,10 @@ import com.bartenkelaar.year2021.materials.PolymerCreation
 import com.bartenkelaar.year2021.measurement.*
 import com.bartenkelaar.year2021.movement.*
 import com.bartenkelaar.year2021.simulation.LanternFishGrowth
+import com.bartenkelaar.year2022.calories.CalorieCounter
+import com.bartenkelaar.year2022.cleaning.SectionDeterminer
+import com.bartenkelaar.year2022.gaming.RockPaperScissorsGuide
+import com.bartenkelaar.year2022.packing.RucksackPacker
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -138,10 +142,18 @@ private val solvers2021 = listOf(
     SeaCucumberMoverYear21Day25(),
 )
 
+private val solvers2022: List<Solver> = listOf(
+    CalorieCounter(),
+    RockPaperScissorsGuide(),
+    RucksackPacker(),
+    SectionDeterminer()
+)
+
 fun main() {
-    2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
-    2021.printSolutions(solvers2021)
+//    2015.printSolutions(solvers2015)
+//    2020.printSolutions(solvers2020)
+//    2021.printSolutions(solvers2021)
+    2022.printSolutions(solvers2022)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {
