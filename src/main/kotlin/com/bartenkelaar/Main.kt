@@ -60,6 +60,7 @@ import com.bartenkelaar.year2021.simulation.LanternFishGrowth
 import com.bartenkelaar.year2022.calories.CalorieCounter
 import com.bartenkelaar.year2022.cleaning.SectionDeterminer
 import com.bartenkelaar.year2022.gaming.RockPaperScissorsGuide
+import com.bartenkelaar.year2022.packing.HanoiStacking
 import com.bartenkelaar.year2022.packing.RucksackPacker
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
@@ -146,7 +147,8 @@ private val solvers2022: List<Solver> = listOf(
     CalorieCounter(),
     RockPaperScissorsGuide(),
     RucksackPacker(),
-    SectionDeterminer()
+    SectionDeterminer(),
+    HanoiStacking()
 )
 
 fun main() {
