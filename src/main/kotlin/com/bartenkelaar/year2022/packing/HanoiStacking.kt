@@ -40,7 +40,7 @@ class HanoiStacking : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
         val stackBottom = input.indexOfFirst { it.trim().startsWith("1") }
         val stacks = input.readInitialStacks(stackBottom)
-        val moreStacks = input.readInitialStacks(stackBottom)
+        val moreStacks = input.readInitialStacks(stackBottom) // easier than deepcopy
         val moves = input.subList(stackBottom + 1, input.lastIndex)
             .nonBlank()
             .map { moveRegex.matchEntire(it)!!.groupValues }

@@ -59,6 +59,7 @@ import com.bartenkelaar.year2021.movement.*
 import com.bartenkelaar.year2021.simulation.LanternFishGrowth
 import com.bartenkelaar.year2022.calories.CalorieCounter
 import com.bartenkelaar.year2022.cleaning.SectionDeterminer
+import com.bartenkelaar.year2022.coms.DeviceTuner
 import com.bartenkelaar.year2022.gaming.RockPaperScissorsGuide
 import com.bartenkelaar.year2022.packing.HanoiStacking
 import com.bartenkelaar.year2022.packing.RucksackPacker
@@ -148,7 +149,8 @@ private val solvers2022: List<Solver> = listOf(
     RockPaperScissorsGuide(),
     RucksackPacker(),
     SectionDeterminer(),
-    HanoiStacking()
+    HanoiStacking(),
+    DeviceTuner()
 )
 
 fun main() {
