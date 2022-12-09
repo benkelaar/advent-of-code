@@ -1,4 +1,4 @@
-package com.bartenkelaar.year2022.system
+package com.bartenkelaar.year2022.coms
 
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.isPositiveNumber
@@ -11,6 +11,7 @@ sealed class FileObject(val name: String, val parent: Dir?) {
 class File(name: String, parent: Dir, private val size: Int) : FileObject(name, parent) {
     override fun size() = size.toLong()
 }
+
 class Dir(name: String, parent: Dir?) : FileObject(name, parent) {
     private val contents: MutableList<FileObject> = mutableListOf()
 
@@ -27,14 +28,28 @@ class Dir(name: String, parent: Dir?) : FileObject(name, parent) {
 
 class FileTree : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
-        val root = Dir("/", null)
-        var pwd = root
-
         val commands = input.subList(1, input.size).nonBlank()
-        commands.forEach { instruction ->
-            val instructionParts = instruction.split(" ")
-            val first = instructionParts.first()
-            val last = instructionParts.last()
+        val root = commands.populateFileTree()
+
+        val dirSizes = root.toDirList().map { it.size() }
+        val smallDirSum = dirSizes.filter { it < 100_000 }.sum()
+
+        val remainingSize = 70_000_000 - root.size()
+        val targetSize = 30_000_000 - remainingSize
+        val smallestFixingDirSize = dirSizes.sorted()
+            .first { it > targetSize }
+
+        return smallDirSum to smallestFixingDirSize
+    }
+
+    private fun List<String>.populateFileTree(): Dir {
+        val root = Dir("/", null)
+
+        var pwd = root
+        forEach { command ->
+            val parts = command.split(" ")
+            val first = parts.first()
+            val last = parts.last()
             when {
                 first == "dir" -> pwd.add(Dir(last, pwd))
                 first.isPositiveNumber() -> pwd.add(File(last, pwd, first.toInt()))
@@ -43,16 +58,6 @@ class FileTree : Solver() {
             }
         }
 
-        val smallDirSum = root.toDirList()
-            .map { it.size() }.filter { it < 100_000 }.sum()
-
-        val remainingSize = 70_000_000 - root.size()
-        val targetSize = 30_000_000 - remainingSize
-        val smallestFixingDirSize = root.toDirList()
-            .map { it.size() }
-            .sorted()
-            .first { it > targetSize }
-
-        return smallDirSum to smallestFixingDirSize
+        return root
     }
 }

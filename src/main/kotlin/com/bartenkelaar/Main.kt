@@ -63,7 +63,9 @@ import com.bartenkelaar.year2022.coms.DeviceTuner
 import com.bartenkelaar.year2022.gaming.RockPaperScissorsGuide
 import com.bartenkelaar.year2022.packing.HanoiStacking
 import com.bartenkelaar.year2022.packing.RucksackPacker
-import com.bartenkelaar.year2022.system.FileTree
+import com.bartenkelaar.year2022.coms.FileTree
+import com.bartenkelaar.year2022.coms.TreeFile
+import com.bartenkelaar.year2022.physics.RopeSimulation
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -152,7 +154,9 @@ private val solvers2022: List<Solver> = listOf(
     SectionDeterminer(),
     HanoiStacking(),
     DeviceTuner(),
-    FileTree()
+    FileTree(),
+    TreeFile(),
+    RopeSimulation()
 )
 
 fun main() {

@@ -13,6 +13,11 @@ data class Coordinate(val x: Int, val y: Int) {
 
     fun distanceTo(target: Coordinate) = abs(x - target.x) + abs(y - target.y)
 
+    fun left() = copy(x = x - 1)
+    fun right() = copy(x = x + 1)
+    fun up() = copy(y = y - 1)
+    fun down() = copy(y = y + 1)
+
     companion object {
         val ORIGIN = Coordinate(0, 0)
     }

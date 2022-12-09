@@ -2,6 +2,7 @@ package com.bartenkelaar.util
 
 data class Grid<T>(val rows: List<List<T>>) {
     fun rowSize() = rows.first().size
+
     fun count(selector: (T) -> Boolean) = rows.sumOf { row -> row.count(selector) }
 
     fun <U> flattenedMap(mapper: (T) -> U) = rows.flatten().map(mapper)
@@ -23,6 +24,8 @@ data class Grid<T>(val rows: List<List<T>>) {
     }
 
     operator fun get(c: Coordinate) = rows[c.y][c.x]
+
+    fun getOrNull(c: Coordinate) = rows.getOrNull(c.y)?.getOrNull(c.x)
 
     fun with(vararg values: Pair<Coordinate, T>) = with(values.toMap())
     fun with(values: Map<Coordinate, T>) = mapCoordinated { c, v -> values[c] ?: v }
@@ -49,5 +52,7 @@ data class Grid<T>(val rows: List<List<T>>) {
             Grid(input.nonBlank().map { row -> row.toList().map { Bit(it, trueValue) } })
     }
 }
+
+fun Grid<Long>.max() = rows.maxOf { it.maxOrNull()!! }
 
 fun <T> Grid<T>.print(toString: (T) -> String) = rows.forEach { println(it.joinToString("", transform = toString)) }
