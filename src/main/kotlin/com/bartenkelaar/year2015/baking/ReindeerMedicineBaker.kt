@@ -4,8 +4,10 @@ import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
 import java.util.*
 
-private data class Medicine(val molecule: String, val matchIndex: Int, val replacements: Int) {
-    fun matchScore(target: String) = matchIndex * 10 + (target.length - molecule.length) - replacements
+private data class Medicine(val molecule: String, val matchIndex: Int, val replacements: Int): Comparable<Medicine> {
+    fun matchScore() = matchIndex - replacements
+
+    override fun compareTo(other: Medicine) = other.matchScore().compareTo(matchScore())
 }
 
 class ReindeerMedicineBaker : Solver() {
@@ -16,56 +18,42 @@ class ReindeerMedicineBaker : Solver() {
             .mapValues { (_, rules) -> rules.map { it[1] } }
         val molecule = input.nonBlank().last()
 
-        val uniqueMolecules = replacements.flatMap { (f, ts) ->
-            ts.flatMap { t -> f.toRegex().findAll(molecule).map { molecule.replaceRange(it.range, t) } }
-        }.toSet().size
+        val uniqueMolecules = replacements.applyTo(molecule).size
 
         val replacementsNecessary = replacements.searchFor(molecule)
 
         return uniqueMolecules to replacementsNecessary
     }
 
+    private fun Map<String, List<String>>.applyTo(molecule: String) =
+        flatMap { (f, ts) ->
+            ts.flatMap { t ->
+                f.toRegex().findAll(molecule).map { molecule.replaceRange(it.range, t) }
+            }
+        }.toSet()
+
     private fun Map<String, List<String>>.searchFor(molecule: String): Int {
-        val initial = Medicine("e", 0, 0)
-        val queue = PriorityQueue<Medicine> { o1, o2 -> o1.matchScore(molecule).compareTo(o2.matchScore(molecule)) }
+        val initial = Medicine("e", -1, 0)
+        val queue = PriorityQueue<Medicine>()
         queue.offer(initial)
 
         while (true) {
-//            val closest = queue.poll()
-//            var index = closest.matchIndex
-            return 0
-//            val
+            val (attempt, matchIndex, replacements) = queue.poll()
+            if (attempt == molecule) return replacements
+            val matching = attempt.substring(0..matchIndex)
+            val faulty = attempt.substring(matchIndex + 1)
+            val possibleReplacements = filterKeys { k -> k in faulty }
+            possibleReplacements.applyTo(faulty)
+                .map { matching + it }
+                .map { Medicine(it, molecule.findMatchIndex(it), replacements + 1) }
+                .forEach(queue::offer)
         }
+        return -1
     }
 }
 
-/**
- * Manual exploration
- *
- target
-CRnSiRnCaPTiMgYCaPTiRnFArSiThFArCaSiThSiThPBCaCaSiRnSiRnTiTiMgArPBCaPMgYPTiRnFArFArCaSiRnBPMgArPRnCaPTiRnFArCaSiThCaCaFArPBCaCaPTiTiRnFArCaSiRnSiAlYSiThRnFArArCaSiRnBFArCaCaSiRnSiThCaCaCaFYCaPTiBCaSiThCaSiThPMgArSiRnCaPBFYCaCaFArCaCaCaCaSiThCaSiRnPRnFArPBSiThPRnFArSiRnMgArCaFYFArCaSiRnSiAlArTiTiTiTiTiTiTiRnPMgArPTiTiTiBSiRnSiAlArTiTiRnPMgArCaFYBPBPTiRnSiRnMgArSiThCaFArCaSiThFArPRnFArCaSiRnTiBSiThSiRnSiAlYCaFArPRnFArSiThCaFArCaCaSiThCaCaCaSiRnPRnCaFArFYPMgArCaPBCaPBSiRnFYPBCaFArCaSiAl
-
- **** Options ***
-HF
-  xCRnAlArF
-  CrnTh...
-  CRnFYFYFArF
-    xCRnSiAlYFYFArF
-      CRnSiTh...
-    CRnCaFYFYFArF
-      CRnSiRnFYFArFYFYFArF
-        CRnSiRnCaFYFArFYFYFArF
-          CRnSiRnCaPMgYFArFYFYFArF
-            CRnSiRnCaPTiMgYFArFYFYFArF
-              CRnSiRnCaPTiMgYCaFArFYFYFArF
-      CRnSiRnMgArFYFYFArF
-    CRnPMgYFYFArF
-  CRnFYMgArF
-  CRnMgYFArF
-NAl
-  CRnFArAl
-OMg
-  CRnFYFArMg
-  CRnMgArMg
-
- */
+private fun String.findMatchIndex(match: String): Int {
+    var matchIndex = -1
+    while (matchIndex != lastIndex && get(matchIndex + 1) == match[matchIndex + 1]) matchIndex++
+    return matchIndex
+}

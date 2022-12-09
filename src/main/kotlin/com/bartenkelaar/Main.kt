@@ -160,7 +160,7 @@ private val solvers2022: List<Solver> = listOf(
 )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
+    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
 //    2021.printSolutions(solvers2021)
     2022.printSolutions(solvers2022)
