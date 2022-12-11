@@ -16,9 +16,6 @@ private data class Ingredient(
     val calories: Int
 )
 
-tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(min(a, b), max(a, b) % min(a, b))
-fun lcm(a: Int, b: Int) = a * b / gcd(a, b)
-
 @JvmInline
 private value class Recipe(val ingredients: Map<Ingredient, Int>) {
     fun score() = score { capacity } * score { durability } * score { flavor } * score { texture }
