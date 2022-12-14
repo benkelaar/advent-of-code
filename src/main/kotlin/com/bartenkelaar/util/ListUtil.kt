@@ -18,5 +18,7 @@ fun <T> List<List<T>>.pivot(): List<List<T>> {
     return List(first().size) { i -> map { it[i] } }
 }
 
+fun <T> List<T>.spindexOf(element: T) = indexOf(element) + 1
+
 infix fun <T> Int.of(element: T) = this of { element }
 infix fun <T> Int.of(element: () -> T) = (0 until this).map { element() }

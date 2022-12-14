@@ -18,6 +18,8 @@ data class Coordinate(val x: Int, val y: Int) {
     fun up() = copy(y = y - 1)
     fun down() = copy(y = y + 1)
 
+    fun orthogonalNeighbours() = listOf(left(), right(), up(), down())
+
     companion object {
         val ORIGIN = Coordinate(0, 0)
     }

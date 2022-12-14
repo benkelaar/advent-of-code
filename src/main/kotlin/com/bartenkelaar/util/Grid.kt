@@ -45,6 +45,14 @@ data class Grid<T>(val rows: List<List<T>>) {
         return false
     }
 
+    fun coordinateOfFirst(t: T): Coordinate {
+        val y = rows.indexOfFirst { t in it }
+        val x = rows[y].indexOf(t)
+        return Coordinate(x, y)
+    }
+
+    operator fun contains(c: Coordinate) = c.x >= 0 && c.x < rowSize() && c.y >= 0 && c.y < rows.size
+
     companion object {
         fun forChars(lines: List<String>) = Grid(lines.nonBlank().map { it.toList() })
 

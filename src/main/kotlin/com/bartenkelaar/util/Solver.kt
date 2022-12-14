@@ -1,7 +1,7 @@
 package com.bartenkelaar.util
 
 abstract class Solver {
-    var disabled = false;
+    private var disabled = false;
 
     abstract fun solve(input: List<String>): Pair<Any, Any>
 
