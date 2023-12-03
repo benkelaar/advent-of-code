@@ -9,3 +9,5 @@ tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(Integer.min(a, b),
 fun lcm(a: Int, b: Int) = a * b / gcd(a, b)
 
 fun List<Int>.product() = reduceRight(Int::times)
+
+fun <T> List<T>.productOf(selector: (T) -> Int) = map(selector).product()

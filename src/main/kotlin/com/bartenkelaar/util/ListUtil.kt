@@ -3,6 +3,8 @@ package com.bartenkelaar.util
 fun <T> List<T>.tail() = allAfter(0)
 fun <T> List<T>.allAfter(index: Int) = subList(index + 1, size)
 
+fun List<String>.reverseAll() = map { it.reversed() }
+
 fun <T, U> List<T?>.notNullMapIndexed(mapper: (Int, T) -> U) = mapIndexed { i, v -> v?.let { mapper(i, it) } }.filterNotNull()
 fun <T> List<T?>.sumNotNullIndexed(mapper: (Int, T) -> Int) = notNullMapIndexed(mapper).sum()
 

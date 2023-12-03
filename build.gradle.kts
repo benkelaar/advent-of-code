@@ -1,11 +1,11 @@
 plugins {
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "1.9.21"
     application
 }
 
 group = "com.bartenkelaar"
 version = "2022.1"
-val targetJvmVersion = "18"
+val targetJvmVersion = "21"
 
 repositories {
     mavenCentral()

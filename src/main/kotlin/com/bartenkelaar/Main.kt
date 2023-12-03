@@ -65,6 +65,8 @@ import com.bartenkelaar.year2022.packing.HanoiStacking
 import com.bartenkelaar.year2022.packing.RucksackPacker
 import com.bartenkelaar.year2022.gaming.MonkeyBusiness
 import com.bartenkelaar.year2022.physics.RopeSimulation
+import com.bartenkelaar.year2023.gaming.CubeConundrum
+import com.bartenkelaar.year2023.machinery.CalibrationDecoder
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -162,11 +164,17 @@ private val solvers2022: List<Solver> = listOf(
     DistressSignalDecoder()
 )
 
+private val solvers2023: List<Solver> = listOf(
+    CalibrationDecoder(),
+    CubeConundrum(),
+)
+
 fun main() {
 //    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
 //    2021.printSolutions(solvers2021)
-    2022.printSolutions(solvers2022)
+//    2022.printSolutions(solvers2022)
+    2023.printSolutions(solvers2023)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {
