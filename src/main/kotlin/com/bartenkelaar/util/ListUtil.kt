@@ -1,5 +1,8 @@
 package com.bartenkelaar.util
 
+import kotlin.math.max
+import kotlin.math.min
+
 fun <T> List<T>.tail() = allAfter(0)
 fun <T> List<T>.allAfter(index: Int) = subList(index + 1, size)
 
@@ -19,6 +22,8 @@ fun <T> List<List<T>>.pivot(): List<List<T>> {
     require(all { it.size == first().size })
     return List(first().size) { i -> map { it[i] } }
 }
+
+fun <T> List<T>.boundedSlice(from: Int, to: Int) = slice(max(0, from)..min(to + 1, lastIndex))
 
 fun <T> List<T>.spindexOf(element: T) = indexOf(element) + 1
 

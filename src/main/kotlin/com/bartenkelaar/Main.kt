@@ -65,8 +65,10 @@ import com.bartenkelaar.year2022.packing.HanoiStacking
 import com.bartenkelaar.year2022.packing.RucksackPacker
 import com.bartenkelaar.year2022.gaming.MonkeyBusiness
 import com.bartenkelaar.year2022.physics.RopeSimulation
+import com.bartenkelaar.year2023.farming.AlmanacReader
 import com.bartenkelaar.year2023.gaming.CubeConundrum
 import com.bartenkelaar.year2023.machinery.CalibrationDecoder
+import com.bartenkelaar.year2023.machinery.EngineSchematicReader
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -167,6 +169,9 @@ private val solvers2022: List<Solver> = listOf(
 private val solvers2023: List<Solver> = listOf(
     CalibrationDecoder(),
     CubeConundrum(),
+    EngineSchematicReader(),
+    EngineSchematicReader().disabled(),
+    AlmanacReader(),
 )
 
 fun main() {
