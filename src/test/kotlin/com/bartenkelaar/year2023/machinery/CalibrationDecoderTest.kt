@@ -1,4 +1,4 @@
-package com.bartenkelaar.year2023
+package com.bartenkelaar.year2023.machinery
 
 import com.bartenkelaar.year2023.machinery.CalibrationDecoder
 import org.junit.jupiter.api.Assertions.assertEquals

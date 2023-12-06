@@ -68,6 +68,7 @@ import com.bartenkelaar.year2022.physics.RopeSimulation
 import com.bartenkelaar.year2023.farming.AlmanacReader
 import com.bartenkelaar.year2023.gaming.BoatRacer
 import com.bartenkelaar.year2023.gaming.CubeConundrum
+import com.bartenkelaar.year2023.gaming.ScratchCardCounter
 import com.bartenkelaar.year2023.machinery.CalibrationDecoder
 import com.bartenkelaar.year2023.machinery.EngineSchematicReader
 import java.time.OffsetDateTime
@@ -171,7 +172,7 @@ private val solvers2023: List<Solver> = listOf(
     CalibrationDecoder(),
     CubeConundrum(),
     EngineSchematicReader(),
-    EngineSchematicReader().disabled(),
+    ScratchCardCounter(),
     AlmanacReader(),
     BoatRacer(),
 )
