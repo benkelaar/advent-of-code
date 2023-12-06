@@ -23,7 +23,7 @@ fun <T> List<List<T>>.pivot(): List<List<T>> {
     return List(first().size) { i -> map { it[i] } }
 }
 
-fun <T> List<T>.boundedSlice(from: Int, to: Int) = slice(max(0, from)..min(to + 1, lastIndex))
+fun <T> List<T>.boundedSlice(from: Int, to: Int) = slice(max(0, from)..min(to, lastIndex))
 
 fun <T> List<T>.spindexOf(element: T) = indexOf(element) + 1
 
