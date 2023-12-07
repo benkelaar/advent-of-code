@@ -13,6 +13,7 @@ import kotlin.math.sqrt
 */
 class BoatRacer : Solver() {
     private val whitespaceRegex = "\\s+".toRegex()
+
     override fun solve(input: List<String>): Pair<Any, Any> {
         val times = input.first.readNumbers()
         val records = input[1].readNumbers()

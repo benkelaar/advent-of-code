@@ -7,3 +7,5 @@ fun String.lastInt() = lastWord().toInt()
 fun String.lastWord() = split(" ").last()
 
 fun String.toLongList(separator: String = " ") = split(separator).map { it.toLong() }
+
+fun String.toIntList(separator: String = " ") = split(separator).map { it.toLong() }
