@@ -19,8 +19,8 @@ class BoatRacer : Solver() {
         val records = input[1].readNumbers()
 
         val xs = times.zip(records).map { (t, r) -> calculateX(t, r) }
-        val wholeXs = xs.map { it.nextInt() }
-        val waysProduct = wholeXs.zip(times).productOf { (x, t) -> howManyWays(x, t) }
+        val nextXs = xs.map { it.nextInt() }
+        val waysProduct = nextXs.zip(times).productOf { (x, t) -> howManyWays(x, t) }
 
         val megaTime = times.joinToString("").toLong()
         val megaRecord = records.joinToString("").toLong()
