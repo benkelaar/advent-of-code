@@ -66,6 +66,7 @@ import com.bartenkelaar.year2022.packing.RucksackPacker
 import com.bartenkelaar.year2022.gaming.MonkeyBusiness
 import com.bartenkelaar.year2022.physics.RopeSimulation
 import com.bartenkelaar.year2023.farming.AlmanacReader
+import com.bartenkelaar.year2023.farming.OasisEnvironmentPredictor
 import com.bartenkelaar.year2023.gaming.BoatRacer
 import com.bartenkelaar.year2023.gaming.CamelCardPlayer
 import com.bartenkelaar.year2023.gaming.CubeConundrum
@@ -179,6 +180,7 @@ private val solvers2023: List<Solver> = listOf(
     BoatRacer(),
     CamelCardPlayer(),
     DesertMapReader(),
+    OasisEnvironmentPredictor(),
 )
 
 fun main() {

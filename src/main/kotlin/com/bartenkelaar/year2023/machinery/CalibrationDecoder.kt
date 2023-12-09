@@ -25,7 +25,7 @@ class CalibrationDecoder : Solver() {
     private fun String.firstDigit() = find { it.isDigit() }!!.digitToInt()
 
     private fun firstSpelledOutDigit(numbers: List<String>): (String) -> Int {
-        val regex = "(${numbers.joinToString("|")}|\\d)".toRegex()
+        val regex = """(${numbers.joinToString("|")}|\d)""".toRegex()
         return {
             val value = regex.find(it)!!.value
             if (value.first().isDigit()) value.toInt() else numbers.spindexOf(value)

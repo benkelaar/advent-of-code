@@ -2,6 +2,7 @@ package com.bartenkelaar.year2023.gaming
 
 import com.bartenkelaar.util.Solver
 import com.bartenkelaar.util.nonBlank
+import com.bartenkelaar.util.splitWhiteSpace
 import com.bartenkelaar.util.tail
 import kotlin.math.pow
 
@@ -42,5 +43,5 @@ class ScratchCardCounter : Solver() {
         )
     }
 
-    private fun String.toIntSet() = trim().split("\\s+".toRegex()).map { it.toInt() }.toSet()
+    private fun String.toIntSet() = trim().splitWhiteSpace().map { it.toInt() }.toSet()
 }
