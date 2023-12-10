@@ -22,6 +22,8 @@ data class Coordinate(val x: Int, val y: Int) {
 
     companion object {
         val ORIGIN = Coordinate(0, 0)
+
+        fun from(xy: Pair<Int, Int>) = Coordinate(xy.first, xy.second)
     }
 }
 

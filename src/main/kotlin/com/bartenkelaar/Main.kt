@@ -74,6 +74,7 @@ import com.bartenkelaar.year2023.gaming.ScratchCardCounter
 import com.bartenkelaar.year2023.machinery.CalibrationDecoder
 import com.bartenkelaar.year2023.machinery.EngineSchematicReader
 import com.bartenkelaar.year2023.navigation.DesertMapReader
+import com.bartenkelaar.year2023.navigation.PipeLooper
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -181,6 +182,7 @@ private val solvers2023: List<Solver> = listOf(
     CamelCardPlayer(),
     DesertMapReader(),
     OasisEnvironmentPredictor(),
+    PipeLooper(),
 )
 
 fun main() {
