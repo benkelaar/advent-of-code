@@ -22,7 +22,7 @@ class SpringRepair : Solver() {
         if (groups.isEmpty()) return 0
         val group = groups.first()
         val match = """[?#]{${corrections.first()}}(?=$|\?)""".toRegex().find(group)
-            ?: return countVariations(groups.tail(), corrections)
+            ?: return if (group.contains("#")) 0 else countVariations(groups.tail(), corrections)
         if (group.substring(0, match.range.first).contains("#")) return 0
         return countVariations(
             listOf(group.substring((match.range.last + 2).coerceAtMost(group.length))) + groups.tail(), corrections.tail()) +

@@ -1,6 +1,5 @@
 package com.bartenkelaar.year2023.machinery
 
-import com.bartenkelaar.year2023.gaming.CubeConundrum
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -17,9 +16,17 @@ class SpringRepairTest {
             "????.######..#####. 1,6,5",
             "?###???????? 3,2,1",
             "#.??#?#????? 1,2,1,1",
-            "..????##?????.????? 6,2,1",
         ))
 
-        assertEquals(67, a)
+        assertEquals(25, a)
+    }
+
+    @Test
+    fun `test skipping of required signs`() {
+        val (a, _) = conundrum.solve(listOf(
+            "??#.## 1,2",
+        ))
+
+        assertEquals(1, a)
     }
 }

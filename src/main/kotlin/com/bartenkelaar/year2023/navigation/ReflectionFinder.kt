@@ -16,8 +16,8 @@ class ReflectionFinder : Solver() {
 
     private fun List<List<String>>.sumReflectionScores(matcher: ReflectionMatcher) = sumOf { rows ->
         val columns = rows.map { it.toCharArray().toList() }.pivot().map { it.joinToString() }
-        val reflectionIndex = columns.findReflectionIndex(matcher)
-        reflectionIndex?.let { it + 1 } ?: ((rows.findReflectionIndex(matcher)!! + 1) * 100)
+        val columnReflectionIndex = columns.findReflectionIndex(matcher)
+        columnReflectionIndex ?: (rows.findReflectionIndex(matcher)!! * 100)
     }
 
     private fun List<String>.findReflectionIndex(matcher: ReflectionMatcher) = indices.find { i ->
@@ -26,7 +26,7 @@ class ReflectionFinder : Solver() {
         val columnNumber = i + 1
         matcher(subList(columnNumber - reflectionSize, columnNumber),
             subList(columnNumber, columnNumber + reflectionSize).reversed())
-    }
+    }?.let { it + 1 }
 
     private fun listsEqual(l1: List<String>, l2: List<String>) = l1 == l2
 
