@@ -73,8 +73,11 @@ import com.bartenkelaar.year2023.gaming.CubeConundrum
 import com.bartenkelaar.year2023.gaming.ScratchCardCounter
 import com.bartenkelaar.year2023.machinery.CalibrationDecoder
 import com.bartenkelaar.year2023.machinery.EngineSchematicReader
+import com.bartenkelaar.year2023.machinery.SpringRepair
 import com.bartenkelaar.year2023.navigation.DesertMapReader
 import com.bartenkelaar.year2023.navigation.PipeLooper
+import com.bartenkelaar.year2023.navigation.ReflectionFinder
+import com.bartenkelaar.year2023.science.GalaxyObserver
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -183,6 +186,9 @@ private val solvers2023: List<Solver> = listOf(
     DesertMapReader(),
     OasisEnvironmentPredictor(),
     PipeLooper(),
+    GalaxyObserver(),
+    SpringRepair(),
+    ReflectionFinder(),
 )
 
 fun main() {
