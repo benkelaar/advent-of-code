@@ -73,6 +73,7 @@ import com.bartenkelaar.year2023.gaming.CubeConundrum
 import com.bartenkelaar.year2023.gaming.ScratchCardCounter
 import com.bartenkelaar.year2023.machinery.CalibrationDecoder
 import com.bartenkelaar.year2023.machinery.EngineSchematicReader
+import com.bartenkelaar.year2023.machinery.MirrorBender
 import com.bartenkelaar.year2023.machinery.SpringRepair
 import com.bartenkelaar.year2023.navigation.DesertMapReader
 import com.bartenkelaar.year2023.navigation.PipeLooper
@@ -189,6 +190,7 @@ private val solvers2023: List<Solver> = listOf(
     GalaxyObserver(),
     SpringRepair(),
     ReflectionFinder(),
+    MirrorBender(),
 )
 
 fun main() {
