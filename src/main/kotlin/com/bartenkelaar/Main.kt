@@ -76,6 +76,7 @@ import com.bartenkelaar.year2023.navigation.DesertMapReader
 import com.bartenkelaar.year2023.navigation.PipeLooper
 import com.bartenkelaar.year2023.navigation.ReflectionFinder
 import com.bartenkelaar.year2023.science.GalaxyObserver
+import com.bartenkelaar.year2024.history.LocationFinder
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -191,12 +192,17 @@ private val solvers2023: List<Solver> = listOf(
     LensProductionInitializer(),
 )
 
+private val solvers2024: List<Solver> = listOf(
+    LocationFinder()
+)
+
 fun main() {
 //    2015.printSolutions(solvers2015)
 //    2020.printSolutions(solvers2020)
 //    2021.printSolutions(solvers2021)
 //    2022.printSolutions(solvers2022)
-    2023.printSolutions(solvers2023)
+//    2023.printSolutions(solvers2023)
+    2024.printSolutions(solvers2024)
 }
 
 private fun Int.printSolutions(solvers: List<Solver>) {
