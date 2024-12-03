@@ -10,6 +10,6 @@ class LanternfishGrowthTest {
     fun `test example case`() {
         val actual = growth.solve(listOf("3,4,3,1,2"))
 
-        assertEquals(5934 to 0, actual)
+        assertEquals(5934L, actual.first)
     }
 }

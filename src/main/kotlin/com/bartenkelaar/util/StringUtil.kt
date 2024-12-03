@@ -12,4 +12,6 @@ fun String.lastWord() = splitWhiteSpace().last()
 
 fun String.toLongList(separator: String = " ") = split(separator).map { it.toLong() }
 
-fun String.toIntList(separator: String = " ") = split(separator).map { it.toInt() }
+fun String.toIntList(separator: String = " ") = split(separator).toIntList()
+
+fun List<String>.toIntList() = map { it.toInt() }

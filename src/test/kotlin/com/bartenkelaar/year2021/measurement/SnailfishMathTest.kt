@@ -53,6 +53,6 @@ class SnailfishMathTest {
         )
         val result = math.solve(input)
 
-        assertEquals(4140, result.first)
+        assertEquals(4140L, result.first)
     }
 }

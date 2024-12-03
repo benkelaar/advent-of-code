@@ -23,7 +23,7 @@ class DesertMapReaderTest {
 
         val (a, _) = reader.solve(input)
 
-        assertEquals(a, 2)
+        assertEquals(a, 2L)
     }
 
     @Test
@@ -38,7 +38,7 @@ class DesertMapReaderTest {
 
         val (a, _) = reader.solve(input)
 
-        assertEquals(a, 6)
+        assertEquals(a, 6L)
     }
 
     @Test

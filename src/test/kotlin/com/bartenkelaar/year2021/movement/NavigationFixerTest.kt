@@ -23,6 +23,6 @@ class NavigationFixerTest {
 
         val actual = fixer.solve(input)
 
-        assertEquals(26397 to 0, actual)
+        assertEquals(26397, actual.first)
     }
 }

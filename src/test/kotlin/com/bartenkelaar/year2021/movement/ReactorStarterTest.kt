@@ -37,7 +37,7 @@ class ReactorStarterTest {
 
         val result = starter.solve(input)
 
-        assertEquals(590784, result.first)
+        assertEquals(590784L, result.first)
     }
 }
 

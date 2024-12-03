@@ -5,10 +5,11 @@ import com.bartenkelaar.util.distanceTo
 import com.bartenkelaar.util.nonBlank
 import com.bartenkelaar.util.second
 import com.bartenkelaar.util.splitWhiteSpace
+import com.bartenkelaar.util.toIntList
 
 class LocationFinder : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
-        val distances = input.nonBlank().map { it.splitWhiteSpace().map { it.toInt() } }
+        val distances = input.nonBlank().map { it.splitWhiteSpace().toIntList() }
         val lefts = distances.map { it.first() }.sorted()
         val rights = distances.map { it.second() }.sorted()
         val totalDistance = lefts.zip(rights)
