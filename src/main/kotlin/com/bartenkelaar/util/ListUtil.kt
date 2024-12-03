@@ -1,10 +1,8 @@
 package com.bartenkelaar.util
 
-import kotlin.math.max
-import kotlin.math.min
-
 fun <T> List<T>.tail() = allAfter(0)
 fun <T> List<T>.allAfter(index: Int) = subList(index + 1, size)
+fun <T> List<T>.second() = this[1]
 
 fun List<String>.reverseAll() = map { it.reversed() }
 

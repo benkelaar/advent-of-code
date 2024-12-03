@@ -77,6 +77,8 @@ import com.bartenkelaar.year2023.navigation.PipeLooper
 import com.bartenkelaar.year2023.navigation.ReflectionFinder
 import com.bartenkelaar.year2023.science.GalaxyObserver
 import com.bartenkelaar.year2024.history.LocationFinder
+import com.bartenkelaar.year2024.operation.MullComputer
+import com.bartenkelaar.year2024.operation.NuclearReportAssessor
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -193,7 +195,9 @@ private val solvers2023: List<Solver> = listOf(
 )
 
 private val solvers2024: List<Solver> = listOf(
-    LocationFinder()
+    LocationFinder(),
+    NuclearReportAssessor(),
+    MullComputer(),
 )
 
 fun main() {

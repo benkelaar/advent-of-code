@@ -4,10 +4,10 @@ import com.bartenkelaar.util.Solver
 
 class LensProductionInitializer : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
-        return input.first().split(",").sumOf { it.HASH() } to 0
+        return input.first().split(",").sumOf { it.toHASH() } to 0
     }
 
-    private fun String.HASH(): Long {
+    private fun String.toHASH(): Long {
         var value = 0L
         forEach {
             val code = it.code

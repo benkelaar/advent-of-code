@@ -5,7 +5,7 @@ import kotlin.math.min
 
 class AlmanacReader : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
-        val seeds = input.first.substring(7).toLongList()
+        val seeds = input.first().substring(7).toLongList()
         val segments = input.tail().zipPerEmpty().map { it.tail().map { row ->
             row.toLongList().let { (dStart, sStart, length) -> sStart ..< sStart + length to dStart } }
         }
@@ -18,7 +18,7 @@ class AlmanacReader : Solver() {
 
     private tailrec fun almanacMap(input: List<Long>, segments: List<List<Pair<LongRange, Long>>>): List<Long> {
         if (segments.isEmpty()) return input
-        val ranges = segments.first
+        val ranges = segments.first()
         return almanacMap(
             input = input.map { i -> ranges.find { i in it.first }?.map(i) ?: i },
             segments = segments.tail()
@@ -29,7 +29,7 @@ class AlmanacReader : Solver() {
 
     private tailrec fun almanacRangeMap(input: List<LongRange>, segments: List<List<Pair<LongRange, Long>>>): List<LongRange> {
         if (segments.isEmpty()) return input
-        val ranges = segments.first
+        val ranges = segments.first()
         return almanacRangeMap(input.flatMap { range ->
             val startRange = ranges.find { (r, _) -> range.first in r }
             val mapRanges = ranges.filter { (r, _) -> r.first in range }.sortedBy { (r, _) -> r.first }
