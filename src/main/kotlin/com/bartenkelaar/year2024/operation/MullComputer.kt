@@ -1,19 +1,19 @@
 package com.bartenkelaar.year2024.operation
 
 import com.bartenkelaar.util.Solver
-import com.bartenkelaar.util.nonBlank
 
 class MullComputer : Solver() {
     private val mulRegex = "mul\\((\\d+),(\\d+)\\)".toRegex()
+    private val doRegex = "do\\(\\)".toRegex()
+    private val dontRegex = "don't\\(\\)".toRegex()
 
     override fun solve(input: List<String>): Pair<Any, Any> {
-        val multipliedSum = input.nonBlank().sumOf { it.sumOfMultiples() }
+        val program = input.reduce(String::plus)
 
-        val oneLine = input.reduce(String::plus)
-        val doLines = oneLine.split("do\\(\\)".toRegex()).mapNotNull {
-            it.split("don't\\(\\)".toRegex()).firstOrNull()
+        val doSections = program.split(doRegex).map {
+            it.split(dontRegex).first()
         }
-        return multipliedSum to doLines.sumOf { it.sumOfMultiples() }
+        return program.sumOfMultiples() to doSections.sumOf { it.sumOfMultiples() }
     }
 
     private fun String.sumOfMultiples(): Int =
