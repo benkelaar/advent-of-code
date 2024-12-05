@@ -12,23 +12,22 @@ class CrossMas : Solver() {
 
     override fun solve(input: List<String>): Pair<Any, Any> {
         val charGrid = Grid.forChars(input)
-        val xMasCount =
-            charGrid.sumOfCoordinated { co, ch -> charGrid.countXmasAt(co, ch) }
-        val crossMasCount =
-            charGrid.sumOfCoordinated { co, ch -> if (charGrid.isCrossMas(co, ch)) 1 else 0 }
+        val xMasCount = charGrid.sumOfCoordinated { co, ch -> charGrid.countXmasAt(co, ch) }
+        val crossMasCount = charGrid.countCoordinated { co, ch -> charGrid.isCrossMas(co, ch) }
         return xMasCount to crossMasCount
     }
 
     private fun Grid<Char>.countXmasAt(
         c: Coordinate,
         char: Char,
-    ): Int {
-        if (char != 'X') return 0
-        return directions.count { (dx, dy) ->
+    ) = if (char == 'X') {
+        directions.count { (dx, dy) ->
             getOrNull(c.transpose(dx, dy)) == 'M' &&
                 getOrNull(c.transpose(2 * dx, 2 * dy)) == 'A' &&
                 getOrNull(c.transpose(3 * dx, 3 * dy)) == 'S'
         }
+    } else {
+        0
     }
 
     private fun Grid<Char>.isCrossMas(

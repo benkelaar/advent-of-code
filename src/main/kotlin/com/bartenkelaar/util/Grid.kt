@@ -7,6 +7,11 @@ data class Grid<T>(
 
     fun count(selector: (T) -> Boolean) = rows.sumOf { row -> row.count(selector) }
 
+    fun countCoordinated(filter: (Coordinate, T) -> Boolean) =
+        mapCoordinated { c, x ->
+            if (filter(c, x)) 1 else 0
+        }.sum()
+
     fun sumOfCoordinated(toInt: (Coordinate, T) -> Int) = mapCoordinated(toInt).sum()
 
     fun <U> flattenedMap(mapper: (T) -> U) = rows.flatten().map(mapper)
@@ -71,6 +76,8 @@ data class Grid<T>(
 
     operator fun contains(c: Coordinate) = c.x >= 0 && c.x < rowSize() && c.y >= 0 && c.y < rows.size
 
+    fun print(toString: (T) -> String = { "$it" }) = rows.forEach { println(it.joinToString("", transform = toString)) }
+
     companion object {
         fun forChars(lines: List<String>) = Grid(lines.nonBlank().map { it.toList() })
 
@@ -84,5 +91,3 @@ data class Grid<T>(
 fun Grid<Int>.sum() = rows.sumOf { it.sum() }
 
 fun Grid<Long>.max() = rows.maxOf { it.maxOrNull()!! }
-
-fun <T> Grid<T>.print(toString: (T) -> String) = rows.forEach { println(it.joinToString("", transform = toString)) }

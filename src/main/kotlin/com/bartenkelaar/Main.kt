@@ -10,6 +10,7 @@ import com.bartenkelaar.year2015.classification.NaughtyNiceClassifier
 import com.bartenkelaar.year2015.classification.NumberCounter
 import com.bartenkelaar.year2015.code.JsonCounter
 import com.bartenkelaar.year2015.code.PasswordIncrementer
+import com.bartenkelaar.year2015.code.RpgFighter
 import com.bartenkelaar.year2015.code.StringCounter
 import com.bartenkelaar.year2015.delivery.ElfDeliveryCounter
 import com.bartenkelaar.year2015.delivery.PackageCounter
@@ -105,6 +106,7 @@ import com.bartenkelaar.year2024.gaming.CrossMas
 import com.bartenkelaar.year2024.history.LocationFinder
 import com.bartenkelaar.year2024.operation.MullComputer
 import com.bartenkelaar.year2024.operation.NuclearReportAssessor
+import com.bartenkelaar.year2024.printing.PaperSorter
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -130,6 +132,7 @@ private val solvers2015 =
         LightAnimator(),
         ReindeerMedicineBaker(),
         ElfDeliveryCounter().disabled(),
+        RpgFighter(),
     )
 
 private val solvers2020 =
@@ -232,6 +235,7 @@ private val solvers2024: List<Solver> =
         NuclearReportAssessor(),
         MullComputer(),
         CrossMas(),
+        PaperSorter(),
     )
 
 fun main() {
