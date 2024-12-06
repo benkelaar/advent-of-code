@@ -17,23 +17,16 @@ class CrossMas : Solver() {
         return xMasCount to crossMasCount
     }
 
-    private fun Grid<Char>.countXmasAt(
-        c: Coordinate,
-        char: Char,
-    ) = if (char == 'X') {
-        directions.count { (dx, dy) ->
-            getOrNull(c.transpose(dx, dy)) == 'M' &&
-                getOrNull(c.transpose(2 * dx, 2 * dy)) == 'A' &&
-                getOrNull(c.transpose(3 * dx, 3 * dy)) == 'S'
-        }
-    } else {
-        0
-    }
+    private fun Grid<Char>.countXmasAt(c: Coordinate, char: Char) =
+        if (char == 'X') {
+            directions.count { (dx, dy) ->
+                getOrNull(c.transpose(dx, dy)) == 'M' &&
+                    getOrNull(c.transpose(2 * dx, 2 * dy)) == 'A' &&
+                    getOrNull(c.transpose(3 * dx, 3 * dy)) == 'S'
+            }
+        } else 0
 
-    private fun Grid<Char>.isCrossMas(
-        c: Coordinate,
-        char: Char,
-    ): Boolean {
+    private fun Grid<Char>.isCrossMas(c: Coordinate, char: Char): Boolean {
         if (char != 'A') return false
         val lastIndex = rowSize() - 1
         if (c.x == 0 || c.y == 0 || c.x == lastIndex || c.y == lastIndex) return false

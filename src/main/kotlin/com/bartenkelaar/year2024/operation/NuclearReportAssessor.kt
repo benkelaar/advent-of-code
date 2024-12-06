@@ -12,7 +12,8 @@ class NuclearReportAssessor : Solver() {
         val rows = input.nonBlank().map { it.splitWhiteSpace().toIntList() }
         val safeCount = rows.count { it.isSafe() }
         val rowPermutations = rows.map { row ->
-            row.indices.map { i -> row.subList(0, i) + row.subList(i + 1, row.size) } }
+            row.indices.map { i -> row.subList(0, i) + row.subList(i + 1, row.size) }
+        }
         return safeCount to rowPermutations.count { it.any { it.isSafe() } }
     }
 

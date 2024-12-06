@@ -37,10 +37,7 @@ class PaperSorter : Solver() {
         return listOf(first) + (this - first).sort(follows)
     }
 
-    private tailrec fun List<Int>.findFirst(
-        test: Int,
-        follows: Map<Int, List<Int>>,
-    ): Int {
+    private tailrec fun List<Int>.findFirst(test: Int, follows: Map<Int, List<Int>>): Int {
         val preceding = follows[test]?.intersect(this) ?: emptySet()
         return if (preceding.isNotEmpty()) findFirst(preceding.first(), follows) else test
     }

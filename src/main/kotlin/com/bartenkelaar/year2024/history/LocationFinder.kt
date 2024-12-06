@@ -12,15 +12,14 @@ class LocationFinder : Solver() {
         val distances = input.nonBlank().map { it.splitWhiteSpace().toIntList() }
         val lefts = distances.map { it.first() }.sorted()
         val rights = distances.map { it.second() }.sorted()
-        val totalDistance = lefts.zip(rights)
+        val totalDistance = lefts
+            .zip(rights)
             .sumOf { (first, second) -> first.distanceTo(second) }
 
         val uniqueLefts = lefts.toSet()
-        val similarityScore =
-            uniqueLefts.sumOf { it * lefts.occurrences(it) * rights.occurrences(it) }
+        val similarityScore = uniqueLefts.sumOf { it * lefts.occurrences(it) * rights.occurrences(it) }
         return totalDistance to similarityScore
     }
 
     private fun List<Int>.occurrences(i: Int) = count { it == i }
 }
-

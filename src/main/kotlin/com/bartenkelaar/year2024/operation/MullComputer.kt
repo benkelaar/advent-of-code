@@ -17,6 +17,8 @@ class MullComputer : Solver() {
     }
 
     private fun String.sumOfMultiples(): Int =
-        mulRegex.findAll(this).map { it.groupValues }
+        mulRegex
+            .findAll(this)
+            .map { it.groupValues }
             .sumOf { (_, a, b) -> a.toInt() * b.toInt() }
 }

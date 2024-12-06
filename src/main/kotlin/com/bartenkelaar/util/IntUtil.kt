@@ -5,6 +5,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 fun Int.rot(n: Int) = mod(n).takeIf { it != 0 } ?: n
+
 fun Int.distanceTo(o: Int) = (this - o).absoluteValue
 
 fun IntRange.grow() = first - 1..last + 1

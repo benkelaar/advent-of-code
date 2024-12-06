@@ -241,11 +241,11 @@ private val solvers2024: List<Solver> =
     )
 
 fun main() {
-//    2015.printSolutions(solvers2015)
-//    2020.printSolutions(solvers2020)
-//    2021.printSolutions(solvers2021)
-//    2022.printSolutions(solvers2022)
-//    2023.printSolutions(solvers2023)
+    2015.printSolutions(solvers2015)
+    2020.printSolutions(solvers2020)
+    2021.printSolutions(solvers2021)
+    2022.printSolutions(solvers2022)
+    2023.printSolutions(solvers2023)
     2024.printSolutions(solvers2024)
 }
 
