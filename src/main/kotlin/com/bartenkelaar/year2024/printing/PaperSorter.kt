@@ -9,14 +9,13 @@ import com.bartenkelaar.util.toIntList
 class PaperSorter : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
         val (ruleLines, stackLines) = input.partitionPer("")
-
         val rules = ruleLines.map { it.toIntList("|") }.map { (a, b) -> a to b }
-        val precedes = rules.groupBy({ (a, _) -> a }) { (_, b) -> b }
-        val follows = rules.groupBy({ (_, b) -> b }) { (a, _) -> a }
-
         val stacks = stackLines.nonBlank().map { it.toIntList(",") }
+
+        val precedes = rules.groupBy({ (a, _) -> a }) { (_, b) -> b }
         val (correct, incorrect) = stacks.partition { it.isSorted(precedes) }
 
+        val follows = rules.groupBy({ (_, b) -> b }) { (a, _) -> a }
         val sorted = incorrect.map { it.sort(follows) }
 
         return correct.middleSum() to sorted.middleSum()

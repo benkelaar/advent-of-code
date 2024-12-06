@@ -104,6 +104,7 @@ import com.bartenkelaar.year2023.navigation.ReflectionFinder
 import com.bartenkelaar.year2023.science.GalaxyObserver
 import com.bartenkelaar.year2024.gaming.CrossMas
 import com.bartenkelaar.year2024.history.LocationFinder
+import com.bartenkelaar.year2024.operation.LabGuarder
 import com.bartenkelaar.year2024.operation.MullComputer
 import com.bartenkelaar.year2024.operation.NuclearReportAssessor
 import com.bartenkelaar.year2024.printing.PaperSorter
@@ -236,6 +237,7 @@ private val solvers2024: List<Solver> =
         MullComputer(),
         CrossMas(),
         PaperSorter(),
+        LabGuarder().disabled(),
     )
 
 fun main() {

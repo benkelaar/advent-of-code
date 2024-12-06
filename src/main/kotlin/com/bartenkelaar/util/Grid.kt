@@ -7,10 +7,7 @@ data class Grid<T>(
 
     fun count(selector: (T) -> Boolean) = rows.sumOf { row -> row.count(selector) }
 
-    fun countCoordinated(filter: (Coordinate, T) -> Boolean) =
-        mapCoordinated { c, x ->
-            if (filter(c, x)) 1 else 0
-        }.sum()
+    fun countCoordinated(selector: (Coordinate, T) -> Boolean) = sumOfCoordinated { c, x -> if (selector(c, x)) 1 else 0 }
 
     fun sumOfCoordinated(toInt: (Coordinate, T) -> Int) = mapCoordinated(toInt).sum()
 
