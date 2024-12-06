@@ -1,26 +1,24 @@
 package com.bartenkelaar.year2023.machinery
 
-import com.bartenkelaar.util.*
+import com.bartenkelaar.util.Coordinate
+import com.bartenkelaar.util.Solver
+import com.bartenkelaar.util.boundedSlice
+import com.bartenkelaar.util.grow
+import com.bartenkelaar.util.productOf
 
 private sealed interface SchematicEntity {
     val coordinate: Coordinate
 }
 
-private data class EnginePart(
-    override val coordinate: Coordinate,
-    val symbol: Char
-) : SchematicEntity
+private data class EnginePart(override val coordinate: Coordinate, val symbol: Char) : SchematicEntity
 
-private data class SchematicNumber (
+private data class SchematicNumber(
     override val coordinate: Coordinate,
     val xRange: IntRange,
     val value: Int,
 ) : SchematicEntity
 
-private data class PartNumber (
-    val part: EnginePart,
-    val number: SchematicNumber
-) {
+private data class PartNumber(val part: EnginePart, val number: SchematicNumber) {
     fun value() = number.value
 
     companion object {
@@ -40,15 +38,17 @@ class EngineSchematicReader : Solver() {
 
     override fun solve(input: List<String>): Pair<Any, Any> {
         val entities = input.mapIndexed { y, row -> regex.findAll(row).map { read(it, y) }.toList() }
-        val parts = entities.map { row -> row.mapNotNull { if (it is EnginePart) it else null } }
+        val parts = entities.map { row -> row.mapNotNull { it as? EnginePart } }
         val partNumbers = entities.flatMap { es -> es.mapNotNull { PartNumber.fromEntity(it, parts) } }
         val numbersByPart = partNumbers.groupBy { it.part }
 
-        val gears = parts.flatMap { row -> row.filter {
-                part -> part.symbol == '*' && numbersByPart.getValue(part).size == 2 }
+        val gears = parts.flatMap { row ->
+            row.filter { part ->
+                part.symbol == '*' && numbersByPart.getValue(part).size == 2
+            }
         }
         return partNumbers.sumOf { it.value() } to
-                gears.sumOf { gear -> numbersByPart.getValue(gear).productOf { it.value() } }
+            gears.sumOf { gear -> numbersByPart.getValue(gear).productOf { it.value() } }
     }
 
     private fun read(result: MatchResult, y: Int): SchematicEntity {

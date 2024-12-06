@@ -14,7 +14,7 @@ import kotlin.math.sqrt
 */
 class BoatRacer : Solver() {
     override fun solve(input: List<String>): Pair<Any, Any> {
-        val times = input.first.readNumbers()
+        val times = input.first().readNumbers()
         val records = input[1].readNumbers()
 
         val xs = times.zip(records).map { (t, r) -> calculateX(t, r) }

@@ -11,13 +11,14 @@ private enum class HandType(private val groups: List<Int>) {
     THREE_OF_A_KIND(3),
     TWO_PAIR(2, 2),
     PAIR(2),
-    HIGH_CARD(1);
+    HIGH_CARD(1),
+    ;
 
     constructor(vararg matches: Int) : this(matches.toList())
 
     companion object {
-        private fun findFor(charCounts: Map<Char, Int>): HandType {
-            return entries.first { type ->
+        private fun findFor(charCounts: Map<Char, Int>): HandType =
+            entries.first { type ->
                 val groupChars = mutableListOf<Char?>()
                 for (group in type.groups) {
                     groupChars += charCounts.firstNotNullOfOrNull { (char, count) ->
@@ -26,7 +27,6 @@ private enum class HandType(private val groups: List<Int>) {
                 }
                 groupChars.all { it != null }
             }
-        }
 
         fun findFor(hand: String) = findFor(hand.groupBy { it }.mapValues { (_, v) -> v.size })
 
@@ -35,7 +35,10 @@ private enum class HandType(private val groups: List<Int>) {
             val jokerCount = counts.getOrDefault('J', 0)
             if (jokerCount == 5) return FIVE_OF_A_KIND
             val otherCounts = counts.filterKeys { it != 'J' }
-            val highestChar = otherCounts.entries.sortedByDescending { (_, v) -> v }.first.key
+            val highestChar = otherCounts.entries
+                .sortedByDescending { (_, v) -> v }
+                .first()
+                .key
             val charCounts = otherCounts + mapOf(highestChar to otherCounts.getValue(highestChar) + jokerCount)
             return findFor(charCounts)
         }
@@ -45,7 +48,11 @@ private enum class HandType(private val groups: List<Int>) {
 private val simpleCardOrder = listOf('A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2')
 private val jokerCardOrder = listOf('A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J')
 
-private data class Hand(val string: String, val type: HandType, val bid: Int)
+private data class Hand(
+    val string: String,
+    val type: HandType,
+    val bid: Int,
+)
 
 private class HandComparator(val cardOrder: List<Char>) : Comparator<Hand> {
     override fun compare(o1: Hand, o2: Hand): Int {
