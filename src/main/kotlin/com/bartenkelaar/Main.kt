@@ -104,6 +104,7 @@ import com.bartenkelaar.year2023.navigation.ReflectionFinder
 import com.bartenkelaar.year2023.science.GalaxyObserver
 import com.bartenkelaar.year2024.gaming.CrossMas
 import com.bartenkelaar.year2024.history.LocationFinder
+import com.bartenkelaar.year2024.operation.BridgeCalibration
 import com.bartenkelaar.year2024.operation.LabGuarder
 import com.bartenkelaar.year2024.operation.MullComputer
 import com.bartenkelaar.year2024.operation.NuclearReportAssessor
@@ -238,14 +239,15 @@ private val solvers2024: List<Solver> =
         CrossMas(),
         PaperSorter(),
         LabGuarder().disabled(),
+        BridgeCalibration(),
     )
 
 fun main() {
-    2015.printSolutions(solvers2015)
-    2020.printSolutions(solvers2020)
-    2021.printSolutions(solvers2021)
-    2022.printSolutions(solvers2022)
-    2023.printSolutions(solvers2023)
+//    2015.printSolutions(solvers2015)
+//    2020.printSolutions(solvers2020)
+//    2021.printSolutions(solvers2021)
+//    2022.printSolutions(solvers2022)
+//    2023.printSolutions(solvers2023)
     2024.printSolutions(solvers2024)
 }
 
