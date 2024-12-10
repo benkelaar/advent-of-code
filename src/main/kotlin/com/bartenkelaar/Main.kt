@@ -102,9 +102,12 @@ import com.bartenkelaar.year2023.navigation.DesertMapReader
 import com.bartenkelaar.year2023.navigation.PipeLooper
 import com.bartenkelaar.year2023.navigation.ReflectionFinder
 import com.bartenkelaar.year2023.science.GalaxyObserver
+import com.bartenkelaar.year2024.communication.AntennaTuner
 import com.bartenkelaar.year2024.gaming.CrossMas
+import com.bartenkelaar.year2024.gaming.HikePathFinder
 import com.bartenkelaar.year2024.history.LocationFinder
 import com.bartenkelaar.year2024.operation.BridgeCalibration
+import com.bartenkelaar.year2024.operation.DiskDefragmenter
 import com.bartenkelaar.year2024.operation.LabGuarder
 import com.bartenkelaar.year2024.operation.MullComputer
 import com.bartenkelaar.year2024.operation.NuclearReportAssessor
@@ -239,7 +242,10 @@ private val solvers2024: List<Solver> =
         CrossMas(),
         PaperSorter(),
         LabGuarder().disabled(),
-        BridgeCalibration(),
+        BridgeCalibration().disabled(),
+        AntennaTuner(),
+        DiskDefragmenter(),
+        HikePathFinder(),
     )
 
 fun main() {
