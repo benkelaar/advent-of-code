@@ -105,6 +105,7 @@ import com.bartenkelaar.year2023.science.GalaxyObserver
 import com.bartenkelaar.year2024.communication.AntennaTuner
 import com.bartenkelaar.year2024.gaming.CrossMas
 import com.bartenkelaar.year2024.gaming.HikePathFinder
+import com.bartenkelaar.year2024.gaming.StoneBlinker
 import com.bartenkelaar.year2024.history.LocationFinder
 import com.bartenkelaar.year2024.operation.BridgeCalibration
 import com.bartenkelaar.year2024.operation.DiskDefragmenter
@@ -112,6 +113,7 @@ import com.bartenkelaar.year2024.operation.LabGuarder
 import com.bartenkelaar.year2024.operation.MullComputer
 import com.bartenkelaar.year2024.operation.NuclearReportAssessor
 import com.bartenkelaar.year2024.printing.PaperSorter
+import com.bartenkelaar.year2024.production.PlantFencing
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit.MILLIS
 
@@ -246,6 +248,8 @@ private val solvers2024: List<Solver> =
         AntennaTuner(),
         DiskDefragmenter(),
         HikePathFinder(),
+        StoneBlinker(),
+        PlantFencing(),
     )
 
 fun main() {
@@ -253,7 +257,7 @@ fun main() {
 //    2020.printSolutions(solvers2020)
 //    2021.printSolutions(solvers2021)
 //    2022.printSolutions(solvers2022)
-//    2023.printSolutions(solvers2023)
+    2023.printSolutions(solvers2023)
     2024.printSolutions(solvers2024)
 }
 

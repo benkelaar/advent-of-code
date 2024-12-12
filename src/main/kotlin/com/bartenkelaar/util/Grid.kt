@@ -71,6 +71,8 @@ data class Grid<T>(val rows: List<List<T>>) {
 
     fun toCoordinateMap() = mapCoordinated { c, t -> c to t }.rows.flatten().toMap()
 
+    fun coordinates(): Set<Coordinate> = rows.flatMapIndexed { y, row -> row.indices.map { x -> Coordinate(x, y) } }.toSet()
+
     companion object {
         fun forChars(lines: List<String>) = Grid(lines.nonBlank().map { it.toList() })
 
